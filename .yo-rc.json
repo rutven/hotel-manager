@@ -1,0 +1,44 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "name.legkodymov.hotel",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "monolith",
+    "baseName": "hotel_manager",
+    "packageName": "name.legkodymov.hotel",
+    "packageFolder": "name/legkodymov/hotel",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NjUyZGU3NWUxZjA5NWYxZjkyNzAxYWRkNTBjYzI5OTY1ODgyZDA4NjU5MmU5ZWE5NDNjMGJjNTBlODliNDQwNTdhY2Y3MzQ2NTUxMTFiNzI5NmRiNDhjNjRjZmQzYzNiNzFhOWY1ZmIzZmM2MjNkYjBjZjFjZWE3ZjZjMThiOTU=",
+    "clientFramework": "react",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-docker",
+        "version": "2.5.0"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "ru"
+    ]
+  }
+}
