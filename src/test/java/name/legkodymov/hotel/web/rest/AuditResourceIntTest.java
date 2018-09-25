@@ -1,6 +1,6 @@
 package name.legkodymov.hotel.web.rest;
 
-import name.legkodymov.hotel.HotelManagerApp;
+import name.legkodymov.hotel.MainApp;
 import name.legkodymov.hotel.config.audit.AuditEventConverter;
 import name.legkodymov.hotel.domain.PersistentAuditEvent;
 import name.legkodymov.hotel.repository.PersistenceAuditEventRepository;
@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AuditResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = HotelManagerApp.class)
+@SpringBootTest(classes = MainApp.class)
 @Transactional
 public class AuditResourceIntTest {
 

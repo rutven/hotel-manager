@@ -1,4 +1,4 @@
-# hotel_manager
+# mainApp
 This application was generated using JHipster 5.3.4, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.3.4](https://www.jhipster.tech/documentation-archive/v5.3.4).
 
 ## Development
@@ -64,7 +64,7 @@ For further instructions on how to develop with JHipster, have a look at [Using 
 
 ## Building for production
 
-To optimize the hotel_manager application for production, run:
+To optimize the mainApp application for production, run:
 
     ./gradlew -Pprod clean bootWar
 
@@ -140,7 +140,6 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [JHipster 5.3.4 archive]: https://www.jhipster.tech/documentation-archive/v5.3.4
 
 [Using JHipster in development]: https://www.jhipster.tech/documentation-archive/v5.3.4/development/
-[Service Discovery and Configuration with the JHipster-Registry]: https://www.jhipster.tech/documentation-archive/v5.3.4/microservices-architecture/#jhipster-registry
 [Using Docker and Docker-Compose]: https://www.jhipster.tech/documentation-archive/v5.3.4/docker-compose
 [Using JHipster in production]: https://www.jhipster.tech/documentation-archive/v5.3.4/production/
 [Running tests page]: https://www.jhipster.tech/documentation-archive/v5.3.4/running-tests/

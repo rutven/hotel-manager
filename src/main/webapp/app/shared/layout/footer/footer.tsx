@@ -1,4 +1,4 @@
-import './footer.scss';
+import './footer.css';
 
 import React from 'react';
 import { Translate } from 'react-jhipster';

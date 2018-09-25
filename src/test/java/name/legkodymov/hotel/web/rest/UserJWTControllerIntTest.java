@@ -1,6 +1,6 @@
 package name.legkodymov.hotel.web.rest;
 
-import name.legkodymov.hotel.HotelManagerApp;
+import name.legkodymov.hotel.MainApp;
 import name.legkodymov.hotel.domain.User;
 import name.legkodymov.hotel.repository.UserRepository;
 import name.legkodymov.hotel.security.jwt.TokenProvider;
@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.not;
  * @see UserJWTController
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = HotelManagerApp.class)
+@SpringBootTest(classes = MainApp.class)
 public class UserJWTControllerIntTest {
 
     @Autowired

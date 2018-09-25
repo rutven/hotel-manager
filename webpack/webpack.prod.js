@@ -6,7 +6,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const path = require('path');
-const sass = require('sass');
 
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
@@ -32,7 +31,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         loader: 'stripcomment-loader'
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -40,14 +39,9 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
               publicPath: '../'
             }
           },
-          'css-loader',
-          'postcss-loader',
-          { 
-            loader: 'sass-loader', 
-            options: { implementation: sass }
-          }
+          'css-loader'
         ]
-      },
+      }
     ]
   },
   optimization: {
@@ -80,7 +74,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     new MomentLocalesPlugin({
       localesToKeep: [
         'en',
-        'ru'
+        'fr'
         // jhipster-needle-i18n-language-moment-webpack - JHipster will add/remove languages in this array
       ]
     }),

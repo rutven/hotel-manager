@@ -13,21 +13,15 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-eureka:
-    client:
-        enabled: false
-    instance:
-        appname: hotel_manager
-        instanceId: hotel_manager:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
-        name: hotel_manager
+        name: mainApp
     cache:
         type: simple
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:hotel_manager;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        url: jdbc:h2:mem:mainApp;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
         name:
         username:
         password:
@@ -96,7 +90,7 @@ jhipster:
         authentication:
             jwt:
                 # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-                base64-secret: NjUyZGU3NWUxZjA5NWYxZjkyNzAxYWRkNTBjYzI5OTY1ODgyZDA4NjU5MmU5ZWE5NDNjMGJjNTBlODliNDQwNTdhY2Y3MzQ2NTUxMTFiNzI5NmRiNDhjNjRjZmQzYzNiNzFhOWY1ZmIzZmM2MjNkYjBjZjFjZWE3ZjZjMThiOTU=
+                base64-secret: ZDgwNzBiMGRlYjAxMTQwN2ViMjc3ZmM3Y2UxYzdjNjJiZmU0MjVjYTRmNTRiODk1M2M2ZmUxZjI1ZDBiNTJlYzg0NzY2NWExOGQ4NDIxMGRmNjBkYmJhZWY0ZjNjMTY2NDI0Ng==
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

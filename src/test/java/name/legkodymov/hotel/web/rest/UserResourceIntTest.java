@@ -1,6 +1,6 @@
 package name.legkodymov.hotel.web.rest;
 
-import name.legkodymov.hotel.HotelManagerApp;
+import name.legkodymov.hotel.MainApp;
 import name.legkodymov.hotel.domain.Authority;
 import name.legkodymov.hotel.domain.User;
 import name.legkodymov.hotel.repository.UserRepository;
@@ -42,7 +42,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see UserResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = HotelManagerApp.class)
+@SpringBootTest(classes = MainApp.class)
 public class UserResourceIntTest {
 
     private static final String DEFAULT_LOGIN = "johndoe";

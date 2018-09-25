@@ -1,6 +1,6 @@
 package name.legkodymov.hotel.web.rest;
 
-import name.legkodymov.hotel.HotelManagerApp;
+import name.legkodymov.hotel.MainApp;
 import name.legkodymov.hotel.web.rest.vm.LoggerVM;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see LogsResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = HotelManagerApp.class)
+@SpringBootTest(classes = MainApp.class)
 public class LogsResourceIntTest {
 
     private MockMvc restLogsMockMvc;

@@ -1,0 +1,10 @@
+{
+    "mainApp": {
+        "RoomType" : {
+            "null": "",
+            "STANDARD": "STANDARD",
+            "COMFORT": "COMFORT",
+            "LUXE": "LUXE"
+        }
+    }
+}

@@ -1,6 +1,6 @@
 {
-  "name": "hotel_manager",
-  "short_name": "hotel_manager",
+  "name": "mainApp",
+  "short_name": "mainApp",
   "icons": [
       {
           "src": "./content/images/hipster192.png",

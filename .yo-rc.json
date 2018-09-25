@@ -1,44 +1,42 @@
 {
   "generator-jhipster": {
-    "promptValues": {
-      "packageName": "name.legkodymov.hotel",
-      "nativeLanguage": "en"
-    },
-    "jhipsterVersion": "5.3.4",
     "applicationType": "monolith",
-    "baseName": "hotel_manager",
-    "packageName": "name.legkodymov.hotel",
-    "packageFolder": "name/legkodymov/hotel",
-    "serverPort": "8080",
-    "authenticationType": "jwt",
-    "cacheProvider": "hazelcast",
-    "enableHibernateCache": true,
-    "websocket": false,
+    "clientPackageManager": "npm",
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
-    "prodDatabaseType": "mysql",
-    "searchEngine": false,
-    "messageBroker": false,
-    "serviceDiscoveryType": "eureka",
-    "buildTool": "gradle",
+    "enableHibernateCache": true,
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "NjUyZGU3NWUxZjA5NWYxZjkyNzAxYWRkNTBjYzI5OTY1ODgyZDA4NjU5MmU5ZWE5NDNjMGJjNTBlODliNDQwNTdhY2Y3MzQ2NTUxMTFiNzI5NmRiNDhjNjRjZmQzYzNiNzFhOWY1ZmIzZmM2MjNkYjBjZjFjZWE3ZjZjMThiOTU=",
-    "clientFramework": "react",
-    "useSass": true,
-    "clientPackageManager": "npm",
-    "testFrameworks": [],
-    "jhiPrefix": "jhi",
-    "otherModules": [
-      {
-        "name": "generator-jhipster-docker",
-        "version": "2.5.0"
-      }
-    ],
     "enableTranslation": true,
-    "nativeLanguage": "en",
+    "jhiPrefix": "jhi",
     "languages": [
       "en",
-      "ru"
-    ]
-  }
+      "fr"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "name.legkodymov.hotel",
+    "packageFolder": "name/legkodymov/hotel",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "serviceDiscoveryType": false,
+    "skipClient": false,
+    "skipServer": false,
+    "testFrameworks": [],
+    "useSass": false,
+    "websocket": false,
+    "baseName": "mainApp",
+    "buildTool": "gradle",
+    "clientFramework": "react",
+    "jhipsterVersion": "5.3.4",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "jwtSecretKey": "ZDgwNzBiMGRlYjAxMTQwN2ViMjc3ZmM3Y2UxYzdjNjJiZmU0MjVjYTRmNTRiODk1M2M2ZmUxZjI1ZDBiNTJlYzg0NzY2NWExOGQ4NDIxMGRmNjBkYmJhZWY0ZjNjMTY2NDI0Ng==",
+    "serverPort": "8080",
+    "skipUserManagement": false
+  },
+  "entities": [
+    "Room",
+    "Guest",
+    "Reservation"
+  ]
 }

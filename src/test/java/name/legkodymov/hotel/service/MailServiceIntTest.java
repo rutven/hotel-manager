@@ -1,7 +1,7 @@
 package name.legkodymov.hotel.service;
 import name.legkodymov.hotel.config.Constants;
 
-import name.legkodymov.hotel.HotelManagerApp;
+import name.legkodymov.hotel.MainApp;
 import name.legkodymov.hotel.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = HotelManagerApp.class)
+@SpringBootTest(classes = MainApp.class)
 public class MailServiceIntTest {
 
     @Autowired

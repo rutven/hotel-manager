@@ -1,6 +1,6 @@
 package name.legkodymov.hotel.repository;
 
-import name.legkodymov.hotel.HotelManagerApp;
+import name.legkodymov.hotel.MainApp;
 import name.legkodymov.hotel.config.Constants;
 import name.legkodymov.hotel.config.audit.AuditEventConverter;
 import name.legkodymov.hotel.domain.PersistentAuditEvent;
@@ -31,7 +31,7 @@ import static name.legkodymov.hotel.repository.CustomAuditEventRepository.EVENT_
  * @see CustomAuditEventRepository
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = HotelManagerApp.class)
+@SpringBootTest(classes = MainApp.class)
 @Transactional
 public class CustomAuditEventRepositoryIntTest {
 

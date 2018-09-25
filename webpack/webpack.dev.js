@@ -6,7 +6,6 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const path = require('path');
-const sass = require('sass');
 
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
@@ -28,13 +27,9 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
   module: {
     rules: [
       {
-        test: /\.(sa|sc|c)ss$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', {
-            loader: 'sass-loader',
-            options: { implementation: sass }
-          }
-        ]
-      },
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
     ]
   },
   devServer: {

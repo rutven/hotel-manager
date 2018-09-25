@@ -1,8 +1,11 @@
 application {
 	config {
-    	baseName hotel_manager,
+    	baseName mainApp
         buildTool gradle
+        clientFramework react
+        packageName name.legkodymov.hotel
     }
+    entities *
 }
 
 entity Room {
@@ -39,13 +42,12 @@ relationship OneToOne {
 
 // Set pagination options
 paginate Reservation with infinite-scroll
-paginate Job with pagination
 
 // Use Data Transfert Objects (DTO)
 // dto * with mapstruct
 
 // Set service options to all except few
-service all with serviceImpl except Employee, Job
+service all with serviceImpl 
 
 // Set an angular suffix
 // angularSuffix * with mySuffix

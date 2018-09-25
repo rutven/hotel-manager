@@ -1,6 +1,6 @@
 package name.legkodymov.hotel.web.rest;
 
-import name.legkodymov.hotel.HotelManagerApp;
+import name.legkodymov.hotel.MainApp;
 import name.legkodymov.hotel.config.Constants;
 import name.legkodymov.hotel.domain.Authority;
 import name.legkodymov.hotel.domain.User;
@@ -48,7 +48,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AccountResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = HotelManagerApp.class)
+@SpringBootTest(classes = MainApp.class)
 public class AccountResourceIntTest {
 
     @Autowired

@@ -1,6 +1,6 @@
 package name.legkodymov.hotel.service;
 
-import name.legkodymov.hotel.HotelManagerApp;
+import name.legkodymov.hotel.MainApp;
 import name.legkodymov.hotel.config.Constants;
 import name.legkodymov.hotel.domain.User;
 import name.legkodymov.hotel.repository.UserRepository;
@@ -38,7 +38,7 @@ import static org.mockito.Mockito.when;
  * @see UserService
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = HotelManagerApp.class)
+@SpringBootTest(classes = MainApp.class)
 @Transactional
 public class UserServiceIntTest {
 
