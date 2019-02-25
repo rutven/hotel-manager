@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -51,7 +52,7 @@ public class GuestResourceIntTest {
 
     @Autowired
     private GuestRepository guestRepository;
-    
+
     @Autowired
     private GuestService guestService;
 
@@ -67,6 +68,9 @@ public class GuestResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private Validator validator;
+
     private MockMvc restGuestMockMvc;
 
     private Guest guest;
@@ -79,7 +83,8 @@ public class GuestResourceIntTest {
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     /**
@@ -237,7 +242,7 @@ public class GuestResourceIntTest {
 
         int databaseSizeBeforeDelete = guestRepository.findAll().size();
 
-        // Get the guest
+        // Delete the guest
         restGuestMockMvc.perform(delete("/api/guests/{id}", guest.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());

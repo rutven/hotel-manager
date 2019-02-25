@@ -36,7 +36,8 @@ public class ReservationServiceImpl implements ReservationService {
      */
     @Override
     public Reservation save(Reservation reservation) {
-        log.debug("Request to save Reservation : {}", reservation);        return reservationRepository.save(reservation);
+        log.debug("Request to save Reservation : {}", reservation);
+        return reservationRepository.save(reservation);
     }
 
     /**
@@ -73,7 +74,6 @@ public class ReservationServiceImpl implements ReservationService {
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Reservation : {}", id);
-        reservationRepository.deleteById(id);
+        log.debug("Request to delete Reservation : {}", id);        reservationRepository.deleteById(id);
     }
 }

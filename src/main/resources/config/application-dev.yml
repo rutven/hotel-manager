@@ -29,16 +29,19 @@ spring:
     devtools:
         restart:
             enabled: true
+            additional-exclude: .h2.server.properties
         livereload:
             enabled: false # we use Webpack dev server + BrowserSync for livereload
     jackson:
-        serialization.indent_output: true
+        serialization:
+            indent-output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:h2:file:./build/h2db/db/mainapp;DB_CLOSE_DELAY=-1
         username: mainApp
         password:
         hikari:
+            poolName: Hikari
             auto-commit: false
     h2:
         console:
@@ -93,7 +96,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+                # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
                 base64-secret: ZDgwNzBiMGRlYjAxMTQwN2ViMjc3ZmM3Y2UxYzdjNjJiZmU0MjVjYTRmNTRiODk1M2M2ZmUxZjI1ZDBiNTJlYzg0NzY2NWExOGQ4NDIxMGRmNjBkYmJhZWY0ZjNjMTY2NDI0Ng==
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
@@ -101,10 +104,8 @@ jhipster:
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: mainApp@localhost
         base-url: http://127.0.0.1:8080
-    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx:
-            enabled: true
-        logs: # Reports Dropwizard metrics in the logs
+    metrics:
+        logs: # Reports metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds
     logging:

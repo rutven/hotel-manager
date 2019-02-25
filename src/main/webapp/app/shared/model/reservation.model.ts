@@ -1,6 +1,6 @@
 import { Moment } from 'moment';
-import { IRoom } from 'app/shared/model//room.model';
-import { IGuest } from 'app/shared/model//guest.model';
+import { IRoom } from 'app/shared/model/room.model';
+import { IGuest } from 'app/shared/model/guest.model';
 
 export interface IReservation {
   id?: number;

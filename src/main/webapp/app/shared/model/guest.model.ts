@@ -1,4 +1,4 @@
-import { IReservation } from 'app/shared/model//reservation.model';
+import { IReservation } from 'app/shared/model/reservation.model';
 
 export interface IGuest {
   id?: number;

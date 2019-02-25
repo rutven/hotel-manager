@@ -35,7 +35,8 @@ public class GuestServiceImpl implements GuestService {
      */
     @Override
     public Guest save(Guest guest) {
-        log.debug("Request to save Guest : {}", guest);        return guestRepository.save(guest);
+        log.debug("Request to save Guest : {}", guest);
+        return guestRepository.save(guest);
     }
 
     /**
@@ -71,7 +72,6 @@ public class GuestServiceImpl implements GuestService {
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Guest : {}", id);
-        guestRepository.deleteById(id);
+        log.debug("Request to delete Guest : {}", id);        guestRepository.deleteById(id);
     }
 }

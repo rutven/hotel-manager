@@ -15,7 +15,7 @@ import { getEntities as getGuests } from 'app/entities/guest/guest.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './reservation.reducer';
 import { IReservation } from 'app/shared/model/reservation.model';
 // tslint:disable-next-line:no-unused-variable
-import { convertDateTimeFromServer } from 'app/shared/util/date-utils';
+import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
 export interface IReservationUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
@@ -34,6 +34,12 @@ export class ReservationUpdate extends React.Component<IReservationUpdateProps, 
       guestId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.updateSuccess !== this.props.updateSuccess && nextProps.updateSuccess) {
+      this.handleClose();
+    }
   }
 
   componentDidMount() {
@@ -58,7 +64,6 @@ export class ReservationUpdate extends React.Component<IReservationUpdateProps, 
       } else {
         this.props.updateEntity(entity);
       }
-      this.handleClose();
     }
   };
 
@@ -169,7 +174,8 @@ const mapStateToProps = (storeState: IRootState) => ({
   guests: storeState.guest.entities,
   reservationEntity: storeState.reservation.entity,
   loading: storeState.reservation.loading,
-  updating: storeState.reservation.updating
+  updating: storeState.reservation.updating,
+  updateSuccess: storeState.reservation.updateSuccess
 });
 
 const mapDispatchToProps = {

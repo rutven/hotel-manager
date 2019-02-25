@@ -1,25 +1,24 @@
-
 {
-    "mainApp": {
-        "guest" : {
-            "home": {
-                "title": "Guests",
-                "createLabel": "Créer un nouveau Guest",
-                "createOrEditLabel": "Créer ou éditer un Guest"
-            },
-            "created": "Un nouveau Guest a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Guest avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Guest avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Guest {{ id }} ?"
-            },
-            "detail": {
-                "title": "Guest"
-            },
-            "name": "Name",
-            "phone": "Phone",
-            "email": "Email",
-            "reservation": "Reservation"
-        }
+  "mainApp": {
+    "guest": {
+      "home": {
+        "title": "Guests",
+        "createLabel": "Créer un nouveau Guest",
+        "createOrEditLabel": "Créer ou éditer un Guest"
+      },
+      "created": "Un nouveau Guest a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Guest avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Guest avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Guest {{ id }} ?"
+      },
+      "detail": {
+        "title": "Guest"
+      },
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "reservation": "Reservation"
     }
+  }
 }

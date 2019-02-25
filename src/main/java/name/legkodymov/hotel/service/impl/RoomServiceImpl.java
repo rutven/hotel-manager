@@ -37,7 +37,8 @@ public class RoomServiceImpl implements RoomService {
      */
     @Override
     public Room save(Room room) {
-        log.debug("Request to save Room : {}", room);        return roomRepository.save(room);
+        log.debug("Request to save Room : {}", room);
+        return roomRepository.save(room);
     }
 
     /**
@@ -87,7 +88,6 @@ public class RoomServiceImpl implements RoomService {
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Room : {}", id);
-        roomRepository.deleteById(id);
+        log.debug("Request to delete Room : {}", id);        roomRepository.deleteById(id);
     }
 }

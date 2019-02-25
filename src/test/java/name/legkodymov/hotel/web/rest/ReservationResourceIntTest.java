@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -50,7 +51,7 @@ public class ReservationResourceIntTest {
 
     @Autowired
     private ReservationRepository reservationRepository;
-    
+
     @Autowired
     private ReservationService reservationService;
 
@@ -66,6 +67,9 @@ public class ReservationResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private Validator validator;
+
     private MockMvc restReservationMockMvc;
 
     private Reservation reservation;
@@ -78,7 +82,8 @@ public class ReservationResourceIntTest {
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     /**
@@ -230,7 +235,7 @@ public class ReservationResourceIntTest {
 
         int databaseSizeBeforeDelete = reservationRepository.findAll().size();
 
-        // Get the reservation
+        // Delete the reservation
         restReservationMockMvc.perform(delete("/api/reservations/{id}", reservation.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
