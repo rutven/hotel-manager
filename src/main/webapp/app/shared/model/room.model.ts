@@ -1,4 +1,4 @@
-import { IReservation } from 'app/shared/model//reservation.model';
+import { IReservation } from 'app/shared/model/reservation.model';
 
 export const enum RoomType {
   STANDARD = 'STANDARD',

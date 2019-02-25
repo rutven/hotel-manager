@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -52,7 +53,7 @@ public class RoomResourceIntTest {
 
     @Autowired
     private RoomRepository roomRepository;
-    
+
     @Autowired
     private RoomService roomService;
 
@@ -68,6 +69,9 @@ public class RoomResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private Validator validator;
+
     private MockMvc restRoomMockMvc;
 
     private Room room;
@@ -80,7 +84,8 @@ public class RoomResourceIntTest {
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     /**
@@ -274,7 +279,7 @@ public class RoomResourceIntTest {
 
         int databaseSizeBeforeDelete = roomRepository.findAll().size();
 
-        // Get the room
+        // Delete the room
         restRoomMockMvc.perform(delete("/api/rooms/{id}", room.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());

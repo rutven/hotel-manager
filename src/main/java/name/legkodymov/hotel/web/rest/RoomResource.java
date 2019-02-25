@@ -1,6 +1,4 @@
 package name.legkodymov.hotel.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import name.legkodymov.hotel.domain.Room;
 import name.legkodymov.hotel.service.RoomService;
 import name.legkodymov.hotel.web.rest.errors.BadRequestAlertException;
@@ -44,7 +42,6 @@ public class RoomResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/rooms")
-    @Timed
     public ResponseEntity<Room> createRoom(@Valid @RequestBody Room room) throws URISyntaxException {
         log.debug("REST request to save Room : {}", room);
         if (room.getId() != null) {
@@ -66,7 +63,6 @@ public class RoomResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/rooms")
-    @Timed
     public ResponseEntity<Room> updateRoom(@Valid @RequestBody Room room) throws URISyntaxException {
         log.debug("REST request to update Room : {}", room);
         if (room.getId() == null) {
@@ -85,7 +81,6 @@ public class RoomResource {
      * @return the ResponseEntity with status 200 (OK) and the list of rooms in body
      */
     @GetMapping("/rooms")
-    @Timed
     public List<Room> getAllRooms(@RequestParam(required = false) String filter) {
         if ("reservation-is-null".equals(filter)) {
             log.debug("REST request to get all Rooms where reservation is null");
@@ -102,7 +97,6 @@ public class RoomResource {
      * @return the ResponseEntity with status 200 (OK) and with body the room, or with status 404 (Not Found)
      */
     @GetMapping("/rooms/{id}")
-    @Timed
     public ResponseEntity<Room> getRoom(@PathVariable Long id) {
         log.debug("REST request to get Room : {}", id);
         Optional<Room> room = roomService.findOne(id);
@@ -116,7 +110,6 @@ public class RoomResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/rooms/{id}")
-    @Timed
     public ResponseEntity<Void> deleteRoom(@PathVariable Long id) {
         log.debug("REST request to delete Room : {}", id);
         roomService.delete(id);

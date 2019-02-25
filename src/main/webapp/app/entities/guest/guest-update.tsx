@@ -11,7 +11,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity, updateEntity, createEntity, reset } from './guest.reducer';
 import { IGuest } from 'app/shared/model/guest.model';
 // tslint:disable-next-line:no-unused-variable
-import { convertDateTimeFromServer } from 'app/shared/util/date-utils';
+import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
 export interface IGuestUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
@@ -26,6 +26,12 @@ export class GuestUpdate extends React.Component<IGuestUpdateProps, IGuestUpdate
     this.state = {
       isNew: !this.props.match.params || !this.props.match.params.id
     };
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.updateSuccess !== this.props.updateSuccess && nextProps.updateSuccess) {
+      this.handleClose();
+    }
   }
 
   componentDidMount() {
@@ -49,7 +55,6 @@ export class GuestUpdate extends React.Component<IGuestUpdateProps, IGuestUpdate
       } else {
         this.props.updateEntity(entity);
       }
-      this.handleClose();
     }
   };
 
@@ -127,7 +132,8 @@ export class GuestUpdate extends React.Component<IGuestUpdateProps, IGuestUpdate
 const mapStateToProps = (storeState: IRootState) => ({
   guestEntity: storeState.guest.entity,
   loading: storeState.guest.loading,
-  updating: storeState.guest.updating
+  updating: storeState.guest.updating,
+  updateSuccess: storeState.guest.updateSuccess
 });
 
 const mapDispatchToProps = {

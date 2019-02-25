@@ -1,6 +1,4 @@
 package name.legkodymov.hotel.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import name.legkodymov.hotel.domain.Guest;
 import name.legkodymov.hotel.service.GuestService;
 import name.legkodymov.hotel.web.rest.errors.BadRequestAlertException;
@@ -42,7 +40,6 @@ public class GuestResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/guests")
-    @Timed
     public ResponseEntity<Guest> createGuest(@RequestBody Guest guest) throws URISyntaxException {
         log.debug("REST request to save Guest : {}", guest);
         if (guest.getId() != null) {
@@ -64,7 +61,6 @@ public class GuestResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/guests")
-    @Timed
     public ResponseEntity<Guest> updateGuest(@RequestBody Guest guest) throws URISyntaxException {
         log.debug("REST request to update Guest : {}", guest);
         if (guest.getId() == null) {
@@ -82,7 +78,6 @@ public class GuestResource {
      * @return the ResponseEntity with status 200 (OK) and the list of guests in body
      */
     @GetMapping("/guests")
-    @Timed
     public List<Guest> getAllGuests() {
         log.debug("REST request to get all Guests");
         return guestService.findAll();
@@ -95,7 +90,6 @@ public class GuestResource {
      * @return the ResponseEntity with status 200 (OK) and with body the guest, or with status 404 (Not Found)
      */
     @GetMapping("/guests/{id}")
-    @Timed
     public ResponseEntity<Guest> getGuest(@PathVariable Long id) {
         log.debug("REST request to get Guest : {}", id);
         Optional<Guest> guest = guestService.findOne(id);
@@ -109,7 +103,6 @@ public class GuestResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/guests/{id}")
-    @Timed
     public ResponseEntity<Void> deleteGuest(@PathVariable Long id) {
         log.debug("REST request to delete Guest : {}", id);
         guestService.delete(id);

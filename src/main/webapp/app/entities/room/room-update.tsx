@@ -13,7 +13,7 @@ import { getEntities as getReservations } from 'app/entities/reservation/reserva
 import { getEntity, updateEntity, createEntity, reset } from './room.reducer';
 import { IRoom } from 'app/shared/model/room.model';
 // tslint:disable-next-line:no-unused-variable
-import { convertDateTimeFromServer } from 'app/shared/util/date-utils';
+import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
 export interface IRoomUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
@@ -30,6 +30,12 @@ export class RoomUpdate extends React.Component<IRoomUpdateProps, IRoomUpdateSta
       reservationId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.updateSuccess !== this.props.updateSuccess && nextProps.updateSuccess) {
+      this.handleClose();
+    }
   }
 
   componentDidMount() {
@@ -55,7 +61,6 @@ export class RoomUpdate extends React.Component<IRoomUpdateProps, IRoomUpdateSta
       } else {
         this.props.updateEntity(entity);
       }
-      this.handleClose();
     }
   };
 
@@ -170,7 +175,8 @@ const mapStateToProps = (storeState: IRootState) => ({
   reservations: storeState.reservation.entities,
   roomEntity: storeState.room.entity,
   loading: storeState.room.loading,
-  updating: storeState.room.updating
+  updating: storeState.room.updating,
+  updateSuccess: storeState.room.updateSuccess
 });
 
 const mapDispatchToProps = {

@@ -1,6 +1,4 @@
 package name.legkodymov.hotel.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import name.legkodymov.hotel.domain.Reservation;
 import name.legkodymov.hotel.service.ReservationService;
 import name.legkodymov.hotel.web.rest.errors.BadRequestAlertException;
@@ -48,7 +46,6 @@ public class ReservationResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/reservations")
-    @Timed
     public ResponseEntity<Reservation> createReservation(@Valid @RequestBody Reservation reservation) throws URISyntaxException {
         log.debug("REST request to save Reservation : {}", reservation);
         if (reservation.getId() != null) {
@@ -70,7 +67,6 @@ public class ReservationResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/reservations")
-    @Timed
     public ResponseEntity<Reservation> updateReservation(@Valid @RequestBody Reservation reservation) throws URISyntaxException {
         log.debug("REST request to update Reservation : {}", reservation);
         if (reservation.getId() == null) {
@@ -89,12 +85,11 @@ public class ReservationResource {
      * @return the ResponseEntity with status 200 (OK) and the list of reservations in body
      */
     @GetMapping("/reservations")
-    @Timed
     public ResponseEntity<List<Reservation>> getAllReservations(Pageable pageable) {
         log.debug("REST request to get a page of Reservations");
         Page<Reservation> page = reservationService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/reservations");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -104,7 +99,6 @@ public class ReservationResource {
      * @return the ResponseEntity with status 200 (OK) and with body the reservation, or with status 404 (Not Found)
      */
     @GetMapping("/reservations/{id}")
-    @Timed
     public ResponseEntity<Reservation> getReservation(@PathVariable Long id) {
         log.debug("REST request to get Reservation : {}", id);
         Optional<Reservation> reservation = reservationService.findOne(id);
@@ -118,7 +112,6 @@ public class ReservationResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/reservations/{id}")
-    @Timed
     public ResponseEntity<Void> deleteReservation(@PathVariable Long id) {
         log.debug("REST request to delete Reservation : {}", id);
         reservationService.delete(id);

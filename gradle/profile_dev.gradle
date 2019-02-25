@@ -16,17 +16,30 @@ if (project.hasProperty('tls')) {
     profiles += ',tls'
 }
 
+springBoot {
+    buildInfo {
+		properties {
+			time = null
+		}
+	}
+}
+
 bootRun {
     args = []
 }
 
-task webpackBuildDev(type: NpmTask, dependsOn: 'npm_install') {
-    onlyIf { shouldWebpackRun() == true }
-    args = ["run", "webpack:build"]
-}
+task webpackBuildDev(type: NpmTask) {
+    inputs.files(fileTree('src/main/webapp/'))
 
-war {
-    webAppDirName = 'src/main/webapp/'
+    def webpackDevFiles = fileTree('webpack//')
+    webpackDevFiles.exclude('webpack.prod.js')
+    inputs.files(webpackDevFiles)
+
+    outputs.files(fileTree("build/www/"))
+
+    dependsOn npmInstall
+
+    args = ["run", "webpack:build"]
 }
 
 task copyIntoStatic (type: Copy) {
@@ -48,9 +61,3 @@ processResources {
 processResources.dependsOn webpackBuildDev
 copyIntoStatic.dependsOn processResources
 bootJar.dependsOn copyIntoStatic
-
-yarn_install.onlyIf { shouldWebpackRun() == true }
-
-def shouldWebpackRun() {
-    file('build/www/app/main.bundle.js').exists() == false || project.hasProperty('webpack')
-}

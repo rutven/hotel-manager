@@ -1,5 +1,6 @@
 package name.legkodymov.hotel.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -21,7 +22,7 @@ import name.legkodymov.hotel.domain.enumeration.RoomType;
 public class Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
