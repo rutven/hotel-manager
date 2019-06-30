@@ -78,23 +78,22 @@ export class HealthPage extends React.Component<IHealthPageProps, IHealthPageSta
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(data).map(
-                  (configPropKey, configPropIndex) =>
-                    configPropKey !== 'status' ? (
-                      <tr key={configPropIndex}>
-                        <td>{configPropKey}</td>
-                        <td>
-                          <Badge color={data[configPropKey].status !== 'UP' ? 'danger' : 'success'}>{data[configPropKey].status}</Badge>
-                        </td>
-                        <td>
-                          {data[configPropKey].details ? (
-                            <a onClick={this.getSystemHealthInfo(configPropKey, data[configPropKey])}>
-                              <FontAwesomeIcon icon="eye" />
-                            </a>
-                          ) : null}
-                        </td>
-                      </tr>
-                    ) : null
+                {Object.keys(data).map((configPropKey, configPropIndex) =>
+                  configPropKey !== 'status' ? (
+                    <tr key={configPropIndex}>
+                      <td>{configPropKey}</td>
+                      <td>
+                        <Badge color={data[configPropKey].status !== 'UP' ? 'danger' : 'success'}>{data[configPropKey].status}</Badge>
+                      </td>
+                      <td>
+                        {data[configPropKey].details ? (
+                          <a onClick={this.getSystemHealthInfo(configPropKey, data[configPropKey])}>
+                            <FontAwesomeIcon icon="eye" />
+                          </a>
+                        ) : null}
+                      </td>
+                    </tr>
+                  ) : null
                 )}
               </tbody>
             </Table>

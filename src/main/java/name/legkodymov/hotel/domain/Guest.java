@@ -1,7 +1,4 @@
 package name.legkodymov.hotel.domain;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -10,7 +7,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
 
 /**
  * A Guest.
@@ -21,7 +17,7 @@ import java.util.Objects;
 public class Guest implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,6 +34,7 @@ public class Guest implements Serializable {
     @OneToMany(mappedBy = "guest")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Reservation> reservations = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -117,19 +114,15 @@ public class Guest implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Guest)) {
             return false;
         }
-        Guest guest = (Guest) o;
-        if (guest.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), guest.getId());
+        return id != null && id.equals(((Guest) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Service Implementation for managing Guest.
+ * Service Implementation for managing {@link Guest}.
  */
 @Service
 @Transactional
@@ -30,8 +30,8 @@ public class GuestServiceImpl implements GuestService {
     /**
      * Save a guest.
      *
-     * @param guest the entity to save
-     * @return the persisted entity
+     * @param guest the entity to save.
+     * @return the persisted entity.
      */
     @Override
     public Guest save(Guest guest) {
@@ -42,7 +42,7 @@ public class GuestServiceImpl implements GuestService {
     /**
      * Get all the guests.
      *
-     * @return the list of entities
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -55,8 +55,8 @@ public class GuestServiceImpl implements GuestService {
     /**
      * Get one guest by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     @Override
     @Transactional(readOnly = true)
@@ -68,10 +68,11 @@ public class GuestServiceImpl implements GuestService {
     /**
      * Delete the guest by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Guest : {}", id);        guestRepository.deleteById(id);
+        log.debug("Request to delete Guest : {}", id);
+        guestRepository.deleteById(id);
     }
 }

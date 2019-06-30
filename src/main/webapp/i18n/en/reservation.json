@@ -4,7 +4,8 @@
       "home": {
         "title": "Reservations",
         "createLabel": "Create a new Reservation",
-        "createOrEditLabel": "Create or edit a Reservation"
+        "createOrEditLabel": "Create or edit a Reservation",
+        "notFound": "No Reservation found"
       },
       "created": "A new Reservation is created with identifier {{ param }}",
       "updated": "A Reservation is updated with identifier {{ param }}",

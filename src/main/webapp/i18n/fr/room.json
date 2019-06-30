@@ -4,7 +4,8 @@
       "home": {
         "title": "Rooms",
         "createLabel": "Créer un nouveau Room",
-        "createOrEditLabel": "Créer ou éditer un Room"
+        "createOrEditLabel": "Créer ou éditer un Room",
+        "notFound": "Aucun Room trouvé"
       },
       "created": "Un nouveau Room a été créé avec l'identifiant {{ param }}",
       "updated": "Le Room avec l'identifiant {{ param }} a été mis à jour",

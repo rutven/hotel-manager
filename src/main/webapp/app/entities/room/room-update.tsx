@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label } from 'reactstrap';
-import { AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
+import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
 // tslint:disable-next-line:no-unused-variable
 import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -89,14 +89,14 @@ export class RoomUpdate extends React.Component<IRoomUpdateProps, IRoomUpdateSta
               <AvForm model={isNew ? {} : roomEntity} onSubmit={this.saveEntity}>
                 {!isNew ? (
                   <AvGroup>
-                    <Label for="id">
+                    <Label for="room-id">
                       <Translate contentKey="global.field.id">ID</Translate>
                     </Label>
                     <AvInput id="room-id" type="text" className="form-control" name="id" required readOnly />
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="roomNumberLabel" for="roomNumber">
+                  <Label id="roomNumberLabel" for="room-roomNumber">
                     <Translate contentKey="mainApp.room.roomNumber">Room Number</Translate>
                   </Label>
                   <AvField
@@ -112,7 +112,7 @@ export class RoomUpdate extends React.Component<IRoomUpdateProps, IRoomUpdateSta
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="roomTypeLabel">
+                  <Label id="roomTypeLabel" for="room-roomType">
                     <Translate contentKey="mainApp.room.roomType">Room Type</Translate>
                   </Label>
                   <AvInput
@@ -122,19 +122,13 @@ export class RoomUpdate extends React.Component<IRoomUpdateProps, IRoomUpdateSta
                     name="roomType"
                     value={(!isNew && roomEntity.roomType) || 'STANDARD'}
                   >
-                    <option value="STANDARD">
-                      <Translate contentKey="mainApp.RoomType.STANDARD" />
-                    </option>
-                    <option value="COMFORT">
-                      <Translate contentKey="mainApp.RoomType.COMFORT" />
-                    </option>
-                    <option value="LUXE">
-                      <Translate contentKey="mainApp.RoomType.LUXE" />
-                    </option>
+                    <option value="STANDARD">{translate('mainApp.RoomType.STANDARD')}</option>
+                    <option value="COMFORT">{translate('mainApp.RoomType.COMFORT')}</option>
+                    <option value="LUXE">{translate('mainApp.RoomType.LUXE')}</option>
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label id="floorLabel" for="floor">
+                  <Label id="floorLabel" for="room-floor">
                     <Translate contentKey="mainApp.room.floor">Floor</Translate>
                   </Label>
                   <AvField

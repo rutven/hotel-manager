@@ -1,11 +1,14 @@
 package name.legkodymov.hotel.web.rest;
+
 import name.legkodymov.hotel.domain.Room;
 import name.legkodymov.hotel.service.RoomService;
 import name.legkodymov.hotel.web.rest.errors.BadRequestAlertException;
-import name.legkodymov.hotel.web.rest.util.HeaderUtil;
+
+import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +21,7 @@ import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 /**
- * REST controller for managing Room.
+ * REST controller for managing {@link name.legkodymov.hotel.domain.Room}.
  */
 @RestController
 @RequestMapping("/api")
@@ -28,6 +31,9 @@ public class RoomResource {
 
     private static final String ENTITY_NAME = "room";
 
+    @Value("${jhipster.clientApp.name}")
+    private String applicationName;
+
     private final RoomService roomService;
 
     public RoomResource(RoomService roomService) {
@@ -35,11 +41,11 @@ public class RoomResource {
     }
 
     /**
-     * POST  /rooms : Create a new room.
+     * {@code POST  /rooms} : Create a new room.
      *
-     * @param room the room to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new room, or with status 400 (Bad Request) if the room has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param room the room to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new room, or with status {@code 400 (Bad Request)} if the room has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/rooms")
     public ResponseEntity<Room> createRoom(@Valid @RequestBody Room room) throws URISyntaxException {
@@ -49,18 +55,18 @@ public class RoomResource {
         }
         Room result = roomService.save(room);
         return ResponseEntity.created(new URI("/api/rooms/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /rooms : Updates an existing room.
+     * {@code PUT  /rooms} : Updates an existing room.
      *
-     * @param room the room to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated room,
-     * or with status 400 (Bad Request) if the room is not valid,
-     * or with status 500 (Internal Server Error) if the room couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param room the room to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated room,
+     * or with status {@code 400 (Bad Request)} if the room is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the room couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/rooms")
     public ResponseEntity<Room> updateRoom(@Valid @RequestBody Room room) throws URISyntaxException {
@@ -70,15 +76,15 @@ public class RoomResource {
         }
         Room result = roomService.save(room);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, room.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, room.getId().toString()))
             .body(result);
     }
 
     /**
-     * GET  /rooms : get all the rooms.
+     * {@code GET  /rooms} : get all the rooms.
      *
-     * @param filter the filter of the request
-     * @return the ResponseEntity with status 200 (OK) and the list of rooms in body
+     * @param filter the filter of the request.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of rooms in body.
      */
     @GetMapping("/rooms")
     public List<Room> getAllRooms(@RequestParam(required = false) String filter) {
@@ -91,10 +97,10 @@ public class RoomResource {
     }
 
     /**
-     * GET  /rooms/:id : get the "id" room.
+     * {@code GET  /rooms/:id} : get the "id" room.
      *
-     * @param id the id of the room to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the room, or with status 404 (Not Found)
+     * @param id the id of the room to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the room, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/rooms/{id}")
     public ResponseEntity<Room> getRoom(@PathVariable Long id) {
@@ -104,15 +110,15 @@ public class RoomResource {
     }
 
     /**
-     * DELETE  /rooms/:id : delete the "id" room.
+     * {@code DELETE  /rooms/:id} : delete the "id" room.
      *
-     * @param id the id of the room to delete
-     * @return the ResponseEntity with status 200 (OK)
+     * @param id the id of the room to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/rooms/{id}")
     public ResponseEntity<Void> deleteRoom(@PathVariable Long id) {
         log.debug("REST request to delete Room : {}", id);
         roomService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }
