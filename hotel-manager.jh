@@ -2,7 +2,6 @@ application {
 	config {
     	baseName mainApp
         buildTool gradle
-        clientFramework react
         packageName name.legkodymov.hotel
     }
     entities *

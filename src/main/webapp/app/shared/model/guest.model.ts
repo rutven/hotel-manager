@@ -8,4 +8,12 @@ export interface IGuest {
   reservations?: IReservation[];
 }
 
-export const defaultValue: Readonly<IGuest> = {};
+export class Guest implements IGuest {
+  constructor(
+    public id?: number,
+    public name?: string,
+    public phone?: string,
+    public email?: string,
+    public reservations?: IReservation[]
+  ) {}
+}

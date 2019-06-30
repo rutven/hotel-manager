@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="guest">
+            <h2><span jhiTranslate="mainApp.guest.detail.title">Guest</span> {{guest.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="mainApp.guest.name">Name</span></dt>
+                <dd>
+                    <span>{{guest.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="mainApp.guest.phone">Phone</span></dt>
+                <dd>
+                    <span>{{guest.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="mainApp.guest.email">Email</span></dt>
+                <dd>
+                    <span>{{guest.email}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/guest', guest.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

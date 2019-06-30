@@ -23,7 +23,7 @@
     "websocket": false,
     "baseName": "mainApp",
     "buildTool": "gradle",
-    "clientFramework": "react",
+    "clientFramework": "angularX",
     "jhipsterVersion": "6.1.2",
     "authenticationType": "jwt",
     "cacheProvider": "ehcache",

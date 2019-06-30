@@ -17,20 +17,21 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "room",
             "otherEntityName": "room",
+            "otherEntityRelationshipName": "reservation",
+            "relationshipName": "room",
             "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "reservation"
+            "ownerSide": true
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "guest",
             "otherEntityName": "guest",
+            "otherEntityRelationshipName": "reservation",
+            "relationshipName": "guest",
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20180925193940",
+    "changelogDate": "20190630153412",
     "entityTableName": "reservation",
     "dto": "no",
     "pagination": "infinite-scroll",

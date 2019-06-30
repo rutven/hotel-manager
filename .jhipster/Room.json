@@ -28,13 +28,13 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "reservation",
             "otherEntityName": "reservation",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "room"
+            "otherEntityRelationshipName": "room",
+            "relationshipName": "reservation",
+            "ownerSide": false
         }
     ],
-    "changelogDate": "20180925193938",
+    "changelogDate": "20190630153410",
     "entityTableName": "room",
     "dto": "no",
     "pagination": "no",

@@ -14,4 +14,12 @@ export interface IRoom {
   reservation?: IReservation;
 }
 
-export const defaultValue: Readonly<IRoom> = {};
+export class Room implements IRoom {
+  constructor(
+    public id?: number,
+    public roomNumber?: number,
+    public roomType?: RoomType,
+    public floor?: number,
+    public reservation?: IReservation
+  ) {}
+}
