@@ -70,7 +70,8 @@ export class Reservation extends React.Component<IReservationProps, IReservation
         <h2 id="reservation-heading">
           <Translate contentKey="mainApp.reservation.home.title">Reservations</Translate>
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp;
+            <FontAwesomeIcon icon="plus" />
+            &nbsp;
             <Translate contentKey="mainApp.reservation.home.createLabel">Create new Reservation</Translate>
           </Link>
         </h2>
@@ -83,67 +84,73 @@ export class Reservation extends React.Component<IReservationProps, IReservation
             threshold={0}
             initialLoad={false}
           >
-            <Table responsive>
-              <thead>
-                <tr>
-                  <th className="hand" onClick={this.sort('id')}>
-                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('startDate')}>
-                    <Translate contentKey="mainApp.reservation.startDate">Start Date</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('days')}>
-                    <Translate contentKey="mainApp.reservation.days">Days</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th>
-                    <Translate contentKey="mainApp.reservation.room">Room</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th>
-                    <Translate contentKey="mainApp.reservation.guest">Guest</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th />
-                </tr>
-              </thead>
-              <tbody>
-                {reservationList.map((reservation, i) => (
-                  <tr key={`entity-${i}`}>
-                    <td>
-                      <Button tag={Link} to={`${match.url}/${reservation.id}`} color="link" size="sm">
-                        {reservation.id}
-                      </Button>
-                    </td>
-                    <td>
-                      <TextFormat type="date" value={reservation.startDate} format={APP_LOCAL_DATE_FORMAT} />
-                    </td>
-                    <td>{reservation.days}</td>
-                    <td>{reservation.room ? <Link to={`room/${reservation.room.id}`}>{reservation.room.id}</Link> : ''}</td>
-                    <td>{reservation.guest ? <Link to={`guest/${reservation.guest.id}`}>{reservation.guest.id}</Link> : ''}</td>
-                    <td className="text-right">
-                      <div className="btn-group flex-btn-group-container">
-                        <Button tag={Link} to={`${match.url}/${reservation.id}`} color="info" size="sm">
-                          <FontAwesomeIcon icon="eye" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.view">View</Translate>
-                          </span>
-                        </Button>
-                        <Button tag={Link} to={`${match.url}/${reservation.id}/edit`} color="primary" size="sm">
-                          <FontAwesomeIcon icon="pencil-alt" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.edit">Edit</Translate>
-                          </span>
-                        </Button>
-                        <Button tag={Link} to={`${match.url}/${reservation.id}/delete`} color="danger" size="sm">
-                          <FontAwesomeIcon icon="trash" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.delete">Delete</Translate>
-                          </span>
-                        </Button>
-                      </div>
-                    </td>
+            {reservationList && reservationList.length > 0 ? (
+              <Table responsive>
+                <thead>
+                  <tr>
+                    <th className="hand" onClick={this.sort('id')}>
+                      <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('startDate')}>
+                      <Translate contentKey="mainApp.reservation.startDate">Start Date</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('days')}>
+                      <Translate contentKey="mainApp.reservation.days">Days</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th>
+                      <Translate contentKey="mainApp.reservation.room">Room</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th>
+                      <Translate contentKey="mainApp.reservation.guest">Guest</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th />
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {reservationList.map((reservation, i) => (
+                    <tr key={`entity-${i}`}>
+                      <td>
+                        <Button tag={Link} to={`${match.url}/${reservation.id}`} color="link" size="sm">
+                          {reservation.id}
+                        </Button>
+                      </td>
+                      <td>
+                        <TextFormat type="date" value={reservation.startDate} format={APP_LOCAL_DATE_FORMAT} />
+                      </td>
+                      <td>{reservation.days}</td>
+                      <td>{reservation.room ? <Link to={`room/${reservation.room.id}`}>{reservation.room.id}</Link> : ''}</td>
+                      <td>{reservation.guest ? <Link to={`guest/${reservation.guest.id}`}>{reservation.guest.id}</Link> : ''}</td>
+                      <td className="text-right">
+                        <div className="btn-group flex-btn-group-container">
+                          <Button tag={Link} to={`${match.url}/${reservation.id}`} color="info" size="sm">
+                            <FontAwesomeIcon icon="eye" />{' '}
+                            <span className="d-none d-md-inline">
+                              <Translate contentKey="entity.action.view">View</Translate>
+                            </span>
+                          </Button>
+                          <Button tag={Link} to={`${match.url}/${reservation.id}/edit`} color="primary" size="sm">
+                            <FontAwesomeIcon icon="pencil-alt" />{' '}
+                            <span className="d-none d-md-inline">
+                              <Translate contentKey="entity.action.edit">Edit</Translate>
+                            </span>
+                          </Button>
+                          <Button tag={Link} to={`${match.url}/${reservation.id}/delete`} color="danger" size="sm">
+                            <FontAwesomeIcon icon="trash" />{' '}
+                            <span className="d-none d-md-inline">
+                              <Translate contentKey="entity.action.delete">Delete</Translate>
+                            </span>
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            ) : (
+              <div className="alert alert-warning">
+                <Translate contentKey="mainApp.reservation.home.notFound">No Reservations found</Translate>
+              </div>
+            )}
           </InfiniteScroll>
         </div>
       </div>

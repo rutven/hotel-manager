@@ -1,6 +1,4 @@
 package name.legkodymov.hotel.domain;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -9,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import name.legkodymov.hotel.domain.enumeration.RoomType;
 
@@ -22,7 +19,7 @@ import name.legkodymov.hotel.domain.enumeration.RoomType;
 public class Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -112,19 +109,15 @@ public class Room implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Room)) {
             return false;
         }
-        Room room = (Room) o;
-        if (room.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), room.getId());
+        return id != null && id.equals(((Room) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 /**
- * Service Implementation for managing Reservation.
+ * Service Implementation for managing {@link Reservation}.
  */
 @Service
 @Transactional
@@ -31,8 +31,8 @@ public class ReservationServiceImpl implements ReservationService {
     /**
      * Save a reservation.
      *
-     * @param reservation the entity to save
-     * @return the persisted entity
+     * @param reservation the entity to save.
+     * @return the persisted entity.
      */
     @Override
     public Reservation save(Reservation reservation) {
@@ -43,8 +43,8 @@ public class ReservationServiceImpl implements ReservationService {
     /**
      * Get all the reservations.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -57,8 +57,8 @@ public class ReservationServiceImpl implements ReservationService {
     /**
      * Get one reservation by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     @Override
     @Transactional(readOnly = true)
@@ -70,10 +70,11 @@ public class ReservationServiceImpl implements ReservationService {
     /**
      * Delete the reservation by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Reservation : {}", id);        reservationRepository.deleteById(id);
+        log.debug("Request to delete Reservation : {}", id);
+        reservationRepository.deleteById(id);
     }
 }

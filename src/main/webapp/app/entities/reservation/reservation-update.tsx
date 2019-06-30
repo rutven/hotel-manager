@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label } from 'reactstrap';
-import { AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
+import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
 // tslint:disable-next-line:no-unused-variable
 import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -92,20 +92,20 @@ export class ReservationUpdate extends React.Component<IReservationUpdateProps, 
               <AvForm model={isNew ? {} : reservationEntity} onSubmit={this.saveEntity}>
                 {!isNew ? (
                   <AvGroup>
-                    <Label for="id">
+                    <Label for="reservation-id">
                       <Translate contentKey="global.field.id">ID</Translate>
                     </Label>
                     <AvInput id="reservation-id" type="text" className="form-control" name="id" required readOnly />
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="startDateLabel" for="startDate">
+                  <Label id="startDateLabel" for="reservation-startDate">
                     <Translate contentKey="mainApp.reservation.startDate">Start Date</Translate>
                   </Label>
                   <AvField id="reservation-startDate" type="date" className="form-control" name="startDate" />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="daysLabel" for="days">
+                  <Label id="daysLabel" for="reservation-days">
                     <Translate contentKey="mainApp.reservation.days">Days</Translate>
                   </Label>
                   <AvField
@@ -120,7 +120,7 @@ export class ReservationUpdate extends React.Component<IReservationUpdateProps, 
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label for="room.id">
+                  <Label for="reservation-room">
                     <Translate contentKey="mainApp.reservation.room">Room</Translate>
                   </Label>
                   <AvInput id="reservation-room" type="select" className="form-control" name="room.id">
@@ -135,7 +135,7 @@ export class ReservationUpdate extends React.Component<IReservationUpdateProps, 
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="guest.id">
+                  <Label for="reservation-guest">
                     <Translate contentKey="mainApp.reservation.guest">Guest</Translate>
                   </Label>
                   <AvInput id="reservation-guest" type="select" className="form-control" name="guest.id">
@@ -150,14 +150,16 @@ export class ReservationUpdate extends React.Component<IReservationUpdateProps, 
                   </AvInput>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/reservation" replace color="info">
-                  <FontAwesomeIcon icon="arrow-left" />&nbsp;
+                  <FontAwesomeIcon icon="arrow-left" />
+                  &nbsp;
                   <span className="d-none d-md-inline">
                     <Translate contentKey="entity.action.back">Back</Translate>
                   </span>
                 </Button>
                 &nbsp;
                 <Button color="primary" id="save-entity" type="submit" disabled={updating}>
-                  <FontAwesomeIcon icon="save" />&nbsp;
+                  <FontAwesomeIcon icon="save" />
+                  &nbsp;
                   <Translate contentKey="entity.action.save">Save</Translate>
                 </Button>
               </AvForm>

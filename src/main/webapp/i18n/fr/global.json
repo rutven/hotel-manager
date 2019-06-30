@@ -1,8 +1,7 @@
 {
   "global": {
     "title": "MainApp",
-    "browsehappy":
-      "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
+    "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
     "menu": {
       "home": "Accueil",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
@@ -38,15 +37,15 @@
       "language": "Langue"
     },
     "form": {
-      "username": "Nom d'utilisateur",
+      "username.label": "Nom d'utilisateur",
       "username.placeholder": "Votre nom d'utilisateur",
-      "currentpassword": "Current password",
-      "currentpassword.placeholder": "Current password",
+      "currentpassword.label": "Mot de passe actuel",
+      "currentpassword.placeholder": "Mot de passe actuel",
       "newpassword": "Nouveau mot de passe",
       "newpassword.placeholder": "Nouveau mot de passe",
-      "confirmpassword": "Confirmation du nouveau mot de passe",
+      "confirmpassword.label": "Confirmation du nouveau mot de passe",
       "confirmpassword.placeholder": "Confirmation du nouveau mot de passe",
-      "email": "Email",
+      "email.label": "Email",
       "email.placeholder": "Votre email"
     },
     "messages": {
@@ -54,8 +53,7 @@
         "authenticated": {
           "prefix": "Si vous voulez vous ",
           "link": "connecter",
-          "suffix":
-            ", vous pouvez utiliser les comptes par défaut : <br/> - Administrateur (nom d'utilisateur=\"admin\" et mot de passe =\"admin\") <br/> - Utilisateur (nom d'utilisateur=\"user\" et mot de passe =\"user\")."
+          "suffix": ", vous pouvez utiliser les comptes par défaut : <br/> - Administrateur (nom d'utilisateur=\"admin\" et mot de passe =\"admin\") <br/> - Utilisateur (nom d'utilisateur=\"user\" et mot de passe =\"user\")."
         },
         "register": {
           "noaccount": "Vous n'avez pas encore de compte ?",

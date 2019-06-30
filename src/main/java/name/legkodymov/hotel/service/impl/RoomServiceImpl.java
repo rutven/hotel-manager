@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 /**
- * Service Implementation for managing Room.
+ * Service Implementation for managing {@link Room}.
  */
 @Service
 @Transactional
@@ -32,8 +32,8 @@ public class RoomServiceImpl implements RoomService {
     /**
      * Save a room.
      *
-     * @param room the entity to save
-     * @return the persisted entity
+     * @param room the entity to save.
+     * @return the persisted entity.
      */
     @Override
     public Room save(Room room) {
@@ -44,7 +44,7 @@ public class RoomServiceImpl implements RoomService {
     /**
      * Get all the rooms.
      *
-     * @return the list of entities
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -56,8 +56,8 @@ public class RoomServiceImpl implements RoomService {
 
 
     /**
-     *  get all the rooms where Reservation is null.
-     *  @return the list of entities
+    *  Get all the rooms where Reservation is {@code null}.
+     *  @return the list of entities.
      */
     @Transactional(readOnly = true) 
     public List<Room> findAllWhereReservationIsNull() {
@@ -71,8 +71,8 @@ public class RoomServiceImpl implements RoomService {
     /**
      * Get one room by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     @Override
     @Transactional(readOnly = true)
@@ -84,10 +84,11 @@ public class RoomServiceImpl implements RoomService {
     /**
      * Delete the room by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Room : {}", id);        roomRepository.deleteById(id);
+        log.debug("Request to delete Room : {}", id);
+        roomRepository.deleteById(id);
     }
 }

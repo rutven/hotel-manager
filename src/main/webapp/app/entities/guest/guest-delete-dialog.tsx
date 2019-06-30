@@ -40,11 +40,13 @@ export class GuestDeleteDialog extends React.Component<IGuestDeleteDialogProps> 
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={this.handleClose}>
-            <FontAwesomeIcon icon="ban" />&nbsp;
+            <FontAwesomeIcon icon="ban" />
+            &nbsp;
             <Translate contentKey="entity.action.cancel">Cancel</Translate>
           </Button>
           <Button id="jhi-confirm-delete-guest" color="danger" onClick={this.confirmDelete}>
-            <FontAwesomeIcon icon="trash" />&nbsp;
+            <FontAwesomeIcon icon="trash" />
+            &nbsp;
             <Translate contentKey="entity.action.delete">Delete</Translate>
           </Button>
         </ModalFooter>

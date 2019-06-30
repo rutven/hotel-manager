@@ -4,7 +4,8 @@
       "home": {
         "title": "Guests",
         "createLabel": "Créer un nouveau Guest",
-        "createOrEditLabel": "Créer ou éditer un Guest"
+        "createOrEditLabel": "Créer ou éditer un Guest",
+        "notFound": "Aucun Guest trouvé"
       },
       "created": "Un nouveau Guest a été créé avec l'identifiant {{ param }}",
       "updated": "Le Guest avec l'identifiant {{ param }} a été mis à jour",

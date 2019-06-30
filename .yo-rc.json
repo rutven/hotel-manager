@@ -22,12 +22,12 @@
     "skipClient": false,
     "skipServer": false,
     "testFrameworks": [],
-    "useSass": false,
+    "useSass": true,
     "websocket": false,
     "baseName": "mainApp",
     "buildTool": "gradle",
     "clientFramework": "react",
-    "jhipsterVersion": "5.8.1",
+    "jhipsterVersion": "6.1.2",
     "authenticationType": "jwt",
     "cacheProvider": "ehcache",
     "jwtSecretKey": "ZDgwNzBiMGRlYjAxMTQwN2ViMjc3ZmM3Y2UxYzdjNjJiZmU0MjVjYTRmNTRiODk1M2M2ZmUxZjI1ZDBiNTJlYzg0NzY2NWExOGQ4NDIxMGRmNjBkYmJhZWY0ZjNjMTY2NDI0Ng==",
@@ -35,7 +35,8 @@
     "skipUserManagement": false,
     "entitySuffix": "",
     "dtoSuffix": "DTO",
-    "otherModules": []
+    "otherModules": [],
+    "clientTheme": "none"
   },
   "entities": [
     "Room",
