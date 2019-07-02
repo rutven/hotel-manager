@@ -31,7 +31,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190630153412",
+    "changelogDate": "20190702192517",
     "entityTableName": "reservation",
     "dto": "no",
     "pagination": "infinite-scroll",
