@@ -22,7 +22,7 @@
             "relationshipName": "reservation"
         }
     ],
-    "changelogDate": "20190630153411",
+    "changelogDate": "20190702192516",
     "entityTableName": "guest",
     "dto": "no",
     "pagination": "no",
