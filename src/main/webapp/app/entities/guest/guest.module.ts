@@ -1,34 +1,16 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { MainAppSharedModule } from 'app/shared';
-import {
-  GuestComponent,
-  GuestDetailComponent,
-  GuestUpdateComponent,
-  GuestDeletePopupComponent,
-  GuestDeleteDialogComponent,
-  guestRoute,
-  guestPopupRoute
-} from './';
-
-const ENTITY_STATES = [...guestRoute, ...guestPopupRoute];
+import { MainAppSharedModule } from 'app/shared/shared.module';
+import { GuestComponent } from './guest.component';
+import { GuestDetailComponent } from './guest-detail.component';
+import { GuestUpdateComponent } from './guest-update.component';
+import { GuestDeleteDialogComponent } from './guest-delete-dialog.component';
+import { guestRoute } from './guest.route';
 
 @NgModule({
-  imports: [MainAppSharedModule, RouterModule.forChild(ENTITY_STATES)],
-  declarations: [GuestComponent, GuestDetailComponent, GuestUpdateComponent, GuestDeleteDialogComponent, GuestDeletePopupComponent],
-  entryComponents: [GuestComponent, GuestUpdateComponent, GuestDeleteDialogComponent, GuestDeletePopupComponent],
-  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [MainAppSharedModule, RouterModule.forChild(guestRoute)],
+  declarations: [GuestComponent, GuestDetailComponent, GuestUpdateComponent, GuestDeleteDialogComponent],
+  entryComponents: [GuestDeleteDialogComponent]
 })
-export class MainAppGuestModule {
-  constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-    this.languageHelper.language.subscribe((languageKey: string) => {
-      if (languageKey !== undefined) {
-        this.languageService.changeLanguage(languageKey);
-      }
-    });
-  }
-}
+export class MainAppGuestModule {}

@@ -1,28 +1,31 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="reservation">
-            <h2><span jhiTranslate="mainApp.reservation.detail.title">Reservation</span> {{reservation.id}}</h2>
+            <h2><span jhiTranslate="mainApp.reservation.detail.title">Reservation</span> {{ reservation.id }}</h2>
+
             <hr>
+
             <jhi-alert-error></jhi-alert-error>
+
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="mainApp.reservation.startDate">Start Date</span></dt>
                 <dd>
-                    <span>{{reservation.startDate}}</span>
+                    <span>{{ reservation.startDate }}</span>
                 </dd>
                 <dt><span jhiTranslate="mainApp.reservation.days">Days</span></dt>
                 <dd>
-                    <span>{{reservation.days}}</span>
+                    <span>{{ reservation.days }}</span>
                 </dd>
                 <dt><span jhiTranslate="mainApp.reservation.room">Room</span></dt>
                 <dd>
                     <div *ngIf="reservation.room">
-                        <a [routerLink]="['/room', reservation.room?.id, 'view']">{{reservation.room?.id}}</a>
+                        <a [routerLink]="['/room', reservation.room?.id, 'view']">{{ reservation.room?.id }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="mainApp.reservation.guest">Guest</span></dt>
                 <dd>
                     <div *ngIf="reservation.guest">
-                        <a [routerLink]="['/guest', reservation.guest?.id, 'view']">{{reservation.guest?.id}}</a>
+                        <a [routerLink]="['/guest', reservation.guest?.id, 'view']">{{ reservation.guest?.id }}</a>
                     </div>
                 </dd>
             </dl>
@@ -30,13 +33,13 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/reservation', reservation.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
     </div>

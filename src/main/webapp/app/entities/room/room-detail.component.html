@@ -1,34 +1,37 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="room">
-            <h2><span jhiTranslate="mainApp.room.detail.title">Room</span> {{room.id}}</h2>
+            <h2><span jhiTranslate="mainApp.room.detail.title">Room</span> {{ room.id }}</h2>
+
             <hr>
+
             <jhi-alert-error></jhi-alert-error>
+
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="mainApp.room.roomNumber">Room Number</span></dt>
                 <dd>
-                    <span>{{room.roomNumber}}</span>
+                    <span>{{ room.roomNumber }}</span>
                 </dd>
                 <dt><span jhiTranslate="mainApp.room.roomType">Room Type</span></dt>
                 <dd>
-                    <span jhiTranslate="{{'mainApp.RoomType.' + room.roomType}}">{{room.roomType}}</span>
+                    <span jhiTranslate="{{ 'mainApp.RoomType.' + room.roomType }}">{{ room.roomType }}</span>
                 </dd>
                 <dt><span jhiTranslate="mainApp.room.floor">Floor</span></dt>
                 <dd>
-                    <span>{{room.floor}}</span>
+                    <span>{{ room.floor }}</span>
                 </dd>
             </dl>
 
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/room', room.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
     </div>

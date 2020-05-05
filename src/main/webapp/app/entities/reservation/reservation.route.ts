@@ -1,27 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { UserRouteAccessService } from 'app/core';
-import { Observable, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { Reservation } from 'app/shared/model/reservation.model';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
+import { Authority } from 'app/shared/constants/authority.constants';
+import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
+import { IReservation, Reservation } from 'app/shared/model/reservation.model';
 import { ReservationService } from './reservation.service';
 import { ReservationComponent } from './reservation.component';
 import { ReservationDetailComponent } from './reservation-detail.component';
 import { ReservationUpdateComponent } from './reservation-update.component';
-import { ReservationDeletePopupComponent } from './reservation-delete-dialog.component';
-import { IReservation } from 'app/shared/model/reservation.model';
 
 @Injectable({ providedIn: 'root' })
 export class ReservationResolve implements Resolve<IReservation> {
-  constructor(private service: ReservationService) {}
+  constructor(private service: ReservationService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IReservation> {
-    const id = route.params['id'] ? route.params['id'] : null;
+  resolve(route: ActivatedRouteSnapshot): Observable<IReservation> | Observable<never> {
+    const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        filter((response: HttpResponse<Reservation>) => response.ok),
-        map((reservation: HttpResponse<Reservation>) => reservation.body)
+        flatMap((reservation: HttpResponse<Reservation>) => {
+          if (reservation.body) {
+            return of(reservation.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
       );
     }
     return of(new Reservation());
@@ -33,7 +39,7 @@ export const reservationRoute: Routes = [
     path: '',
     component: ReservationComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.reservation.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -45,7 +51,7 @@ export const reservationRoute: Routes = [
       reservation: ReservationResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.reservation.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -57,7 +63,7 @@ export const reservationRoute: Routes = [
       reservation: ReservationResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.reservation.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -69,25 +75,9 @@ export const reservationRoute: Routes = [
       reservation: ReservationResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.reservation.home.title'
     },
     canActivate: [UserRouteAccessService]
-  }
-];
-
-export const reservationPopupRoute: Routes = [
-  {
-    path: ':id/delete',
-    component: ReservationDeletePopupComponent,
-    resolve: {
-      reservation: ReservationResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'mainApp.reservation.home.title'
-    },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
   }
 ];

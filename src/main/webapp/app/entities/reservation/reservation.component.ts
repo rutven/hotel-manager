@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IReservation } from 'app/shared/model/reservation.model';
-import { AccountService } from 'app/core';
 
-import { ITEMS_PER_PAGE } from 'app/shared';
+import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ReservationService } from './reservation.service';
+import { ReservationDeleteDialogComponent } from './reservation-delete-dialog.component';
 
 @Component({
   selector: 'jhi-reservation',
@@ -16,21 +16,18 @@ import { ReservationService } from './reservation.service';
 })
 export class ReservationComponent implements OnInit, OnDestroy {
   reservations: IReservation[];
-  currentAccount: any;
-  eventSubscriber: Subscription;
+  eventSubscriber?: Subscription;
   itemsPerPage: number;
   links: any;
-  page: any;
-  predicate: any;
-  reverse: any;
-  totalItems: number;
+  page: number;
+  predicate: string;
+  ascending: boolean;
 
   constructor(
     protected reservationService: ReservationService,
-    protected jhiAlertService: JhiAlertService,
     protected eventManager: JhiEventManager,
-    protected parseLinks: JhiParseLinks,
-    protected accountService: AccountService
+    protected modalService: NgbModal,
+    protected parseLinks: JhiParseLinks
   ) {
     this.reservations = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -39,70 +36,70 @@ export class ReservationComponent implements OnInit, OnDestroy {
       last: 0
     };
     this.predicate = 'id';
-    this.reverse = true;
+    this.ascending = true;
   }
 
-  loadAll() {
+  loadAll(): void {
     this.reservationService
       .query({
         page: this.page,
         size: this.itemsPerPage,
         sort: this.sort()
       })
-      .subscribe(
-        (res: HttpResponse<IReservation[]>) => this.paginateReservations(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: HttpResponse<IReservation[]>) => this.paginateReservations(res.body, res.headers));
   }
 
-  reset() {
+  reset(): void {
     this.page = 0;
     this.reservations = [];
     this.loadAll();
   }
 
-  loadPage(page) {
+  loadPage(page: number): void {
     this.page = page;
     this.loadAll();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadAll();
-    this.accountService.identity().then(account => {
-      this.currentAccount = account;
-    });
     this.registerChangeInReservations();
   }
 
-  ngOnDestroy() {
-    this.eventManager.destroy(this.eventSubscriber);
+  ngOnDestroy(): void {
+    if (this.eventSubscriber) {
+      this.eventManager.destroy(this.eventSubscriber);
+    }
   }
 
-  trackId(index: number, item: IReservation) {
-    return item.id;
+  trackId(index: number, item: IReservation): number {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+    return item.id!;
   }
 
-  registerChangeInReservations() {
-    this.eventSubscriber = this.eventManager.subscribe('reservationListModification', response => this.reset());
+  registerChangeInReservations(): void {
+    this.eventSubscriber = this.eventManager.subscribe('reservationListModification', () => this.reset());
   }
 
-  sort() {
-    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+  delete(reservation: IReservation): void {
+    const modalRef = this.modalService.open(ReservationDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.reservation = reservation;
+  }
+
+  sort(): string[] {
+    const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
       result.push('id');
     }
     return result;
   }
 
-  protected paginateReservations(data: IReservation[], headers: HttpHeaders) {
-    this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    for (let i = 0; i < data.length; i++) {
-      this.reservations.push(data[i]);
+  protected paginateReservations(data: IReservation[] | null, headers: HttpHeaders): void {
+    const headersLink = headers.get('link');
+    this.links = this.parseLinks.parse(headersLink ? headersLink : '');
+    if (data) {
+      for (let i = 0; i < data.length; i++) {
+        this.reservations.push(data[i]);
+      }
     }
-  }
-
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
   }
 }

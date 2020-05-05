@@ -1,27 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { UserRouteAccessService } from 'app/core';
-import { Observable, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { Guest } from 'app/shared/model/guest.model';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
+import { Authority } from 'app/shared/constants/authority.constants';
+import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
+import { IGuest, Guest } from 'app/shared/model/guest.model';
 import { GuestService } from './guest.service';
 import { GuestComponent } from './guest.component';
 import { GuestDetailComponent } from './guest-detail.component';
 import { GuestUpdateComponent } from './guest-update.component';
-import { GuestDeletePopupComponent } from './guest-delete-dialog.component';
-import { IGuest } from 'app/shared/model/guest.model';
 
 @Injectable({ providedIn: 'root' })
 export class GuestResolve implements Resolve<IGuest> {
-  constructor(private service: GuestService) {}
+  constructor(private service: GuestService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IGuest> {
-    const id = route.params['id'] ? route.params['id'] : null;
+  resolve(route: ActivatedRouteSnapshot): Observable<IGuest> | Observable<never> {
+    const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        filter((response: HttpResponse<Guest>) => response.ok),
-        map((guest: HttpResponse<Guest>) => guest.body)
+        flatMap((guest: HttpResponse<Guest>) => {
+          if (guest.body) {
+            return of(guest.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
       );
     }
     return of(new Guest());
@@ -33,7 +39,7 @@ export const guestRoute: Routes = [
     path: '',
     component: GuestComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.guest.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -45,7 +51,7 @@ export const guestRoute: Routes = [
       guest: GuestResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.guest.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -57,7 +63,7 @@ export const guestRoute: Routes = [
       guest: GuestResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.guest.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -69,25 +75,9 @@ export const guestRoute: Routes = [
       guest: GuestResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.guest.home.title'
     },
     canActivate: [UserRouteAccessService]
-  }
-];
-
-export const guestPopupRoute: Routes = [
-  {
-    path: ':id/delete',
-    component: GuestDeletePopupComponent,
-    resolve: {
-      guest: GuestResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'mainApp.guest.home.title'
-    },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
   }
 ];

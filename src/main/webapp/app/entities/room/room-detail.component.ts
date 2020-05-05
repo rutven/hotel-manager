@@ -8,17 +8,15 @@ import { IRoom } from 'app/shared/model/room.model';
   templateUrl: './room-detail.component.html'
 })
 export class RoomDetailComponent implements OnInit {
-  room: IRoom;
+  room: IRoom | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
-    this.activatedRoute.data.subscribe(({ room }) => {
-      this.room = room;
-    });
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ room }) => (this.room = room));
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 }

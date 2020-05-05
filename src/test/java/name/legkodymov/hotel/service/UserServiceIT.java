@@ -5,7 +5,8 @@ import name.legkodymov.hotel.config.Constants;
 import name.legkodymov.hotel.domain.User;
 import name.legkodymov.hotel.repository.UserRepository;
 import name.legkodymov.hotel.service.dto.UserDTO;
-import name.legkodymov.hotel.service.util.RandomUtil;
+
+import io.github.jhipster.security.RandomUtil;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,6 @@ import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;

@@ -8,10 +8,7 @@
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
     "jhiPrefix": "jhi",
-    "languages": [
-      "en",
-      "fr"
-    ],
+    "languages": ["en", "fr"],
     "messageBroker": false,
     "nativeLanguage": "en",
     "packageName": "name.legkodymov.hotel",
@@ -27,7 +24,7 @@
     "baseName": "mainApp",
     "buildTool": "gradle",
     "clientFramework": "angularX",
-    "jhipsterVersion": "6.1.2",
+    "jhipsterVersion": "6.8.0",
     "authenticationType": "jwt",
     "cacheProvider": "ehcache",
     "jwtSecretKey": "ZDgwNzBiMGRlYjAxMTQwN2ViMjc3ZmM3Y2UxYzdjNjJiZmU0MjVjYTRmNTRiODk1M2M2ZmUxZjI1ZDBiNTJlYzg0NzY2NWExOGQ4NDIxMGRmNjBkYmJhZWY0ZjNjMTY2NDI0Ng==",
@@ -36,11 +33,10 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "clientTheme": "none"
+    "clientTheme": "none",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1588691945181,
+    "blueprints": []
   },
-  "entities": [
-    "Room",
-    "Guest",
-    "Reservation"
-  ]
+  "entities": ["Room", "Guest", "Reservation"]
 }

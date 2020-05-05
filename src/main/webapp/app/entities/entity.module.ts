@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -6,22 +6,18 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: 'room',
-        loadChildren: './room/room.module#MainAppRoomModule'
+        loadChildren: () => import('./room/room.module').then(m => m.MainAppRoomModule)
       },
       {
         path: 'guest',
-        loadChildren: './guest/guest.module#MainAppGuestModule'
+        loadChildren: () => import('./guest/guest.module').then(m => m.MainAppGuestModule)
       },
       {
         path: 'reservation',
-        loadChildren: './reservation/reservation.module#MainAppReservationModule'
+        loadChildren: () => import('./reservation/reservation.module').then(m => m.MainAppReservationModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
-  ],
-  declarations: [],
-  entryComponents: [],
-  providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  ]
 })
 export class MainAppEntityModule {}

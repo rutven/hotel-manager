@@ -8,17 +8,15 @@ import { IReservation } from 'app/shared/model/reservation.model';
   templateUrl: './reservation-detail.component.html'
 })
 export class ReservationDetailComponent implements OnInit {
-  reservation: IReservation;
+  reservation: IReservation | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
-    this.activatedRoute.data.subscribe(({ reservation }) => {
-      this.reservation = reservation;
-    });
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ reservation }) => (this.reservation = reservation));
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 }

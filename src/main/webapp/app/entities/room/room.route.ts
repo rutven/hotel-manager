@@ -1,27 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { UserRouteAccessService } from 'app/core';
-import { Observable, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { Room } from 'app/shared/model/room.model';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
+import { Authority } from 'app/shared/constants/authority.constants';
+import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
+import { IRoom, Room } from 'app/shared/model/room.model';
 import { RoomService } from './room.service';
 import { RoomComponent } from './room.component';
 import { RoomDetailComponent } from './room-detail.component';
 import { RoomUpdateComponent } from './room-update.component';
-import { RoomDeletePopupComponent } from './room-delete-dialog.component';
-import { IRoom } from 'app/shared/model/room.model';
 
 @Injectable({ providedIn: 'root' })
 export class RoomResolve implements Resolve<IRoom> {
-  constructor(private service: RoomService) {}
+  constructor(private service: RoomService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IRoom> {
-    const id = route.params['id'] ? route.params['id'] : null;
+  resolve(route: ActivatedRouteSnapshot): Observable<IRoom> | Observable<never> {
+    const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        filter((response: HttpResponse<Room>) => response.ok),
-        map((room: HttpResponse<Room>) => room.body)
+        flatMap((room: HttpResponse<Room>) => {
+          if (room.body) {
+            return of(room.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
       );
     }
     return of(new Room());
@@ -33,7 +39,7 @@ export const roomRoute: Routes = [
     path: '',
     component: RoomComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.room.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -45,7 +51,7 @@ export const roomRoute: Routes = [
       room: RoomResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.room.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -57,7 +63,7 @@ export const roomRoute: Routes = [
       room: RoomResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.room.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -69,25 +75,9 @@ export const roomRoute: Routes = [
       room: RoomResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'mainApp.room.home.title'
     },
     canActivate: [UserRouteAccessService]
-  }
-];
-
-export const roomPopupRoute: Routes = [
-  {
-    path: ':id/delete',
-    component: RoomDeletePopupComponent,
-    resolve: {
-      room: RoomResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'mainApp.room.home.title'
-    },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
   }
 ];

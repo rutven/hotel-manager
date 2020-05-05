@@ -1,23 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { JhiAlertService } from 'ng-jhipster';
+
 import { IRoom, Room } from 'app/shared/model/room.model';
 import { RoomService } from './room.service';
-import { IReservation } from 'app/shared/model/reservation.model';
-import { ReservationService } from 'app/entities/reservation';
 
 @Component({
   selector: 'jhi-room-update',
   templateUrl: './room-update.component.html'
 })
 export class RoomUpdateComponent implements OnInit {
-  isSaving: boolean;
-
-  reservations: IReservation[];
+  isSaving = false;
 
   editForm = this.fb.group({
     id: [],
@@ -26,29 +22,15 @@ export class RoomUpdateComponent implements OnInit {
     floor: [null, [Validators.required, Validators.min(0)]]
   });
 
-  constructor(
-    protected jhiAlertService: JhiAlertService,
-    protected roomService: RoomService,
-    protected reservationService: ReservationService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected roomService: RoomService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.isSaving = false;
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ room }) => {
       this.updateForm(room);
     });
-    this.reservationService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IReservation[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IReservation[]>) => response.body)
-      )
-      .subscribe((res: IReservation[]) => (this.reservations = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
-  updateForm(room: IRoom) {
+  updateForm(room: IRoom): void {
     this.editForm.patchValue({
       id: room.id,
       roomNumber: room.roomNumber,
@@ -57,11 +39,11 @@ export class RoomUpdateComponent implements OnInit {
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 
-  save() {
+  save(): void {
     this.isSaving = true;
     const room = this.createFromForm();
     if (room.id !== undefined) {
@@ -74,30 +56,26 @@ export class RoomUpdateComponent implements OnInit {
   private createFromForm(): IRoom {
     return {
       ...new Room(),
-      id: this.editForm.get(['id']).value,
-      roomNumber: this.editForm.get(['roomNumber']).value,
-      roomType: this.editForm.get(['roomType']).value,
-      floor: this.editForm.get(['floor']).value
+      id: this.editForm.get(['id'])!.value,
+      roomNumber: this.editForm.get(['roomNumber'])!.value,
+      roomType: this.editForm.get(['roomType'])!.value,
+      floor: this.editForm.get(['floor'])!.value
     };
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IRoom>>) {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IRoom>>): void {
+    result.subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
   }
 
-  protected onSaveSuccess() {
+  protected onSaveSuccess(): void {
     this.isSaving = false;
     this.previousState();
   }
 
-  protected onSaveError() {
+  protected onSaveError(): void {
     this.isSaving = false;
-  }
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackReservationById(index: number, item: IReservation) {
-    return item.id;
   }
 }
