@@ -1,0 +1,45 @@
+{
+    "name": "Reservation",
+    "fields": [
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "days",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 1
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "room",
+            "otherEntityRelationshipName": "reservation",
+            "relationshipName": "room",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "guest",
+            "otherEntityRelationshipName": "reservation",
+            "relationshipName": "guest",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702192517",
+    "entityTableName": "reservation",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "mainApp"
+    ]
+}

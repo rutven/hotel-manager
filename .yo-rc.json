@@ -1,0 +1,46 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "clientPackageManager": "npm",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "name.legkodymov.hotel",
+    "packageFolder": "name/legkodymov/hotel",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "serviceDiscoveryType": false,
+    "skipClient": false,
+    "skipServer": false,
+    "testFrameworks": [],
+    "useSass": true,
+    "websocket": false,
+    "baseName": "mainApp",
+    "buildTool": "gradle",
+    "clientFramework": "angularX",
+    "jhipsterVersion": "6.1.2",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "jwtSecretKey": "ZDgwNzBiMGRlYjAxMTQwN2ViMjc3ZmM3Y2UxYzdjNjJiZmU0MjVjYTRmNTRiODk1M2M2ZmUxZjI1ZDBiNTJlYzg0NzY2NWExOGQ4NDIxMGRmNjBkYmJhZWY0ZjNjMTY2NDI0Ng==",
+    "serverPort": "8080",
+    "skipUserManagement": false,
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "clientTheme": "none"
+  },
+  "entities": [
+    "Room",
+    "Guest",
+    "Reservation"
+  ]
+}

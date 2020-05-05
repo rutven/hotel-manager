@@ -1,0 +1,25 @@
+{
+  "mainApp": {
+    "reservation": {
+      "home": {
+        "title": "Reservations",
+        "createLabel": "Create a new Reservation",
+        "createOrEditLabel": "Create or edit a Reservation",
+        "notFound": "No Reservation found"
+      },
+      "created": "A new Reservation is created with identifier {{ param }}",
+      "updated": "A Reservation is updated with identifier {{ param }}",
+      "deleted": "A Reservation is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Reservation {{ id }}?"
+      },
+      "detail": {
+        "title": "Reservation"
+      },
+      "startDate": "Start Date",
+      "days": "Days",
+      "room": "Room",
+      "guest": "Guest"
+    }
+  }
+}
