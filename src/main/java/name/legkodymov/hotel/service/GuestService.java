@@ -25,7 +25,6 @@ public interface GuestService {
      */
     List<Guest> findAll();
 
-
     /**
      * Get the "id" guest.
      *

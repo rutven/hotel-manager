@@ -54,9 +54,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
 
-
     /**
-    *  Get all the rooms where Reservation is {@code null}.
+     *  Get all the rooms where Reservation is {@code null}.
      *  @return the list of entities.
      */
     @Transactional(readOnly = true) 

@@ -1,10 +1,5 @@
 import { IReservation } from 'app/shared/model/reservation.model';
-
-export const enum RoomType {
-  STANDARD = 'STANDARD',
-  COMFORT = 'COMFORT',
-  LUXE = 'LUXE'
-}
+import { RoomType } from 'app/shared/model/enumerations/room-type.model';
 
 export interface IRoom {
   id?: number;

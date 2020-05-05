@@ -8,17 +8,15 @@ import { IGuest } from 'app/shared/model/guest.model';
   templateUrl: './guest-detail.component.html'
 })
 export class GuestDetailComponent implements OnInit {
-  guest: IGuest;
+  guest: IGuest | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
-    this.activatedRoute.data.subscribe(({ guest }) => {
-      this.guest = guest;
-    });
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ guest }) => (this.guest = guest));
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 }

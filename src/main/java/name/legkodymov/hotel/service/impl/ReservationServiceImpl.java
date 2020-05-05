@@ -53,7 +53,6 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.findAll(pageable);
     }
 
-
     /**
      * Get one reservation by id.
      *

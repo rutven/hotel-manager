@@ -5,9 +5,6 @@ import name.legkodymov.hotel.config.Constants;
 import name.legkodymov.hotel.domain.Authority;
 import name.legkodymov.hotel.domain.User;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
 import javax.validation.constraints.*;
 import java.time.Instant;
 import java.util.Set;

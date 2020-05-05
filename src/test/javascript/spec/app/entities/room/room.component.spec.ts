@@ -1,6 +1,5 @@
-/* tslint:disable max-line-length */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { MainAppTestModule } from '../../../test.module';
@@ -17,8 +16,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [MainAppTestModule],
-        declarations: [RoomComponent],
-        providers: []
+        declarations: [RoomComponent]
       })
         .overrideTemplate(RoomComponent, '')
         .compileComponents();
@@ -45,7 +43,7 @@ describe('Component Tests', () => {
 
       // THEN
       expect(service.query).toHaveBeenCalled();
-      expect(comp.rooms[0]).toEqual(jasmine.objectContaining({ id: 123 }));
+      expect(comp.rooms && comp.rooms[0]).toEqual(jasmine.objectContaining({ id: 123 }));
     });
   });
 });

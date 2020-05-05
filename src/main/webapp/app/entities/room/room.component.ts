@@ -1,65 +1,49 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IRoom } from 'app/shared/model/room.model';
-import { AccountService } from 'app/core';
 import { RoomService } from './room.service';
+import { RoomDeleteDialogComponent } from './room-delete-dialog.component';
 
 @Component({
   selector: 'jhi-room',
   templateUrl: './room.component.html'
 })
 export class RoomComponent implements OnInit, OnDestroy {
-  rooms: IRoom[];
-  currentAccount: any;
-  eventSubscriber: Subscription;
+  rooms?: IRoom[];
+  eventSubscriber?: Subscription;
 
-  constructor(
-    protected roomService: RoomService,
-    protected jhiAlertService: JhiAlertService,
-    protected eventManager: JhiEventManager,
-    protected accountService: AccountService
-  ) {}
+  constructor(protected roomService: RoomService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
-  loadAll() {
-    this.roomService
-      .query()
-      .pipe(
-        filter((res: HttpResponse<IRoom[]>) => res.ok),
-        map((res: HttpResponse<IRoom[]>) => res.body)
-      )
-      .subscribe(
-        (res: IRoom[]) => {
-          this.rooms = res;
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+  loadAll(): void {
+    this.roomService.query().subscribe((res: HttpResponse<IRoom[]>) => (this.rooms = res.body || []));
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadAll();
-    this.accountService.identity().then(account => {
-      this.currentAccount = account;
-    });
     this.registerChangeInRooms();
   }
 
-  ngOnDestroy() {
-    this.eventManager.destroy(this.eventSubscriber);
+  ngOnDestroy(): void {
+    if (this.eventSubscriber) {
+      this.eventManager.destroy(this.eventSubscriber);
+    }
   }
 
-  trackId(index: number, item: IRoom) {
-    return item.id;
+  trackId(index: number, item: IRoom): number {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+    return item.id!;
   }
 
-  registerChangeInRooms() {
-    this.eventSubscriber = this.eventManager.subscribe('roomListModification', response => this.loadAll());
+  registerChangeInRooms(): void {
+    this.eventSubscriber = this.eventManager.subscribe('roomListModification', () => this.loadAll());
   }
 
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
+  delete(room: IRoom): void {
+    const modalRef = this.modalService.open(RoomDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.room = room;
   }
 }

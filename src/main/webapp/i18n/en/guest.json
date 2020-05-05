@@ -5,7 +5,7 @@
         "title": "Guests",
         "createLabel": "Create a new Guest",
         "createOrEditLabel": "Create or edit a Guest",
-        "notFound": "No Guest found"
+        "notFound": "No Guests found"
       },
       "created": "A new Guest is created with identifier {{ param }}",
       "updated": "A Guest is updated with identifier {{ param }}",

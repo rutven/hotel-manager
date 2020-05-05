@@ -5,7 +5,7 @@
         "title": "Rooms",
         "createLabel": "Create a new Room",
         "createOrEditLabel": "Create or edit a Room",
-        "notFound": "No Room found"
+        "notFound": "No Rooms found"
       },
       "created": "A new Room is created with identifier {{ param }}",
       "updated": "A Room is updated with identifier {{ param }}",

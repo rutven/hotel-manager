@@ -31,7 +31,6 @@ public interface RoomService {
      */
     List<Room> findAllWhereReservationIsNull();
 
-
     /**
      * Get the "id" room.
      *

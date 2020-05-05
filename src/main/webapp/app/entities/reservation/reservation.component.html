@@ -1,70 +1,74 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="mainApp.reservation.home.title">Reservations</span>
+
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-reservation" [routerLink]="['/reservation/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
+            <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="mainApp.reservation.home.createLabel">
-            Create new Reservation
+            Create a new Reservation
             </span>
         </button>
     </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
     <jhi-alert></jhi-alert>
-    <br/>
-    <div class="alert alert-warning" *ngIf="reservations?.length === 0">
+
+    <div class="alert alert-warning" id="no-result" *ngIf="reservations?.length === 0">
         <span jhiTranslate="mainApp.reservation.home.notFound">No reservations found</span>
     </div>
-    <div class="table-responsive" *ngIf="reservations?.length > 0">
-        <table class="table table-striped">
+
+    <div class="table-responsive" id="entities" *ngIf="reservations?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="startDate"><span jhiTranslate="mainApp.reservation.startDate">Start Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="days"><span jhiTranslate="mainApp.reservation.days">Days</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="room.id"><span jhiTranslate="mainApp.reservation.room">Room</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="guest.id"><span jhiTranslate="mainApp.reservation.guest">Guest</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
-            </tr>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="startDate"><span jhiTranslate="mainApp.reservation.startDate">Start Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="days"><span jhiTranslate="mainApp.reservation.days">Days</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="room.id"><span jhiTranslate="mainApp.reservation.room">Room</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="guest.id"><span jhiTranslate="mainApp.reservation.guest">Guest</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-            <tr *ngFor="let reservation of reservations ;trackBy: trackId">
-                <td><a [routerLink]="['/reservation', reservation.id, 'view' ]">{{reservation.id}}</a></td>
-                <td>{{reservation.startDate | date:'mediumDate'}}</td>
-                <td>{{reservation.days}}</td>
-                <td>
-                    <div *ngIf="reservation.room">
-                        <a [routerLink]="['../room', reservation.room?.id, 'view' ]" >{{reservation.room?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="reservation.guest">
-                        <a [routerLink]="['../guest', reservation.guest?.id, 'view' ]" >{{reservation.guest?.id}}</a>
-                    </div>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group">
-                        <button type="submit"
-                                [routerLink]="['/reservation', reservation.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/reservation', reservation.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', 'reservation', { outlets: { popup: reservation.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
+                <tr *ngFor="let reservation of reservations ;trackBy: trackId">
+                    <td><a [routerLink]="['/reservation', reservation.id, 'view']">{{ reservation.id }}</a></td>
+                    <td>{{ reservation.startDate | date:'mediumDate' }}</td>
+                    <td>{{ reservation.days }}</td>
+                    <td>
+                        <div *ngIf="reservation.room">
+                            <a [routerLink]="['/room', reservation.room?.id, 'view']" >{{ reservation.room?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="reservation.guest">
+                            <a [routerLink]="['/guest', reservation.guest?.id, 'view']" >{{ reservation.guest?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/reservation', reservation.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/reservation', reservation.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(reservation)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

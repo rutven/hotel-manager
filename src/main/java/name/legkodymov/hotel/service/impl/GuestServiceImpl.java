@@ -51,7 +51,6 @@ public class GuestServiceImpl implements GuestService {
         return guestRepository.findAll();
     }
 
-
     /**
      * Get one guest by id.
      *

@@ -4,25 +4,19 @@ import name.legkodymov.hotel.MainApp;
 import name.legkodymov.hotel.domain.Room;
 import name.legkodymov.hotel.repository.RoomRepository;
 import name.legkodymov.hotel.service.RoomService;
-import name.legkodymov.hotel.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Validator;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static name.legkodymov.hotel.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -30,9 +24,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import name.legkodymov.hotel.domain.enumeration.RoomType;
 /**
- * Integration tests for the {@Link RoomResource} REST controller.
+ * Integration tests for the {@link RoomResource} REST controller.
  */
 @SpringBootTest(classes = MainApp.class)
+
+@AutoConfigureMockMvc
+@WithMockUser
 public class RoomResourceIT {
 
     private static final Integer DEFAULT_ROOM_NUMBER = 1;
@@ -51,35 +48,12 @@ public class RoomResourceIT {
     private RoomService roomService;
 
     @Autowired
-    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
-
-    @Autowired
-    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
-
-    @Autowired
-    private ExceptionTranslator exceptionTranslator;
-
-    @Autowired
     private EntityManager em;
 
     @Autowired
-    private Validator validator;
-
     private MockMvc restRoomMockMvc;
 
     private Room room;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final RoomResource roomResource = new RoomResource(roomService);
-        this.restRoomMockMvc = MockMvcBuilders.standaloneSetup(roomResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter)
-            .setValidator(validator).build();
-    }
 
     /**
      * Create an entity for this test.
@@ -120,7 +94,7 @@ public class RoomResourceIT {
 
         // Create the Room
         restRoomMockMvc.perform(post("/api/rooms")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(room)))
             .andExpect(status().isCreated());
 
@@ -143,7 +117,7 @@ public class RoomResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restRoomMockMvc.perform(post("/api/rooms")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(room)))
             .andExpect(status().isBadRequest());
 
@@ -163,7 +137,7 @@ public class RoomResourceIT {
         // Create the Room, which fails.
 
         restRoomMockMvc.perform(post("/api/rooms")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(room)))
             .andExpect(status().isBadRequest());
 
@@ -181,7 +155,7 @@ public class RoomResourceIT {
         // Create the Room, which fails.
 
         restRoomMockMvc.perform(post("/api/rooms")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(room)))
             .andExpect(status().isBadRequest());
 
@@ -198,7 +172,7 @@ public class RoomResourceIT {
         // Get all the roomList
         restRoomMockMvc.perform(get("/api/rooms?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(room.getId().intValue())))
             .andExpect(jsonPath("$.[*].roomNumber").value(hasItem(DEFAULT_ROOM_NUMBER)))
             .andExpect(jsonPath("$.[*].roomType").value(hasItem(DEFAULT_ROOM_TYPE.toString())))
@@ -214,7 +188,7 @@ public class RoomResourceIT {
         // Get the room
         restRoomMockMvc.perform(get("/api/rooms/{id}", room.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(room.getId().intValue()))
             .andExpect(jsonPath("$.roomNumber").value(DEFAULT_ROOM_NUMBER))
             .andExpect(jsonPath("$.roomType").value(DEFAULT_ROOM_TYPE.toString()))
@@ -247,7 +221,7 @@ public class RoomResourceIT {
             .floor(UPDATED_FLOOR);
 
         restRoomMockMvc.perform(put("/api/rooms")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedRoom)))
             .andExpect(status().isOk());
 
@@ -269,7 +243,7 @@ public class RoomResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restRoomMockMvc.perform(put("/api/rooms")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(room)))
             .andExpect(status().isBadRequest());
 
@@ -288,26 +262,11 @@ public class RoomResourceIT {
 
         // Delete the room
         restRoomMockMvc.perform(delete("/api/rooms/{id}", room.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
         List<Room> roomList = roomRepository.findAll();
         assertThat(roomList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(Room.class);
-        Room room1 = new Room();
-        room1.setId(1L);
-        Room room2 = new Room();
-        room2.setId(room1.getId());
-        assertThat(room1).isEqualTo(room2);
-        room2.setId(2L);
-        assertThat(room1).isNotEqualTo(room2);
-        room1.setId(null);
-        assertThat(room1).isNotEqualTo(room2);
     }
 }

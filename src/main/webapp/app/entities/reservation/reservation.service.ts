@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
+import * as moment from 'moment';
 
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { SERVER_API_URL } from 'app/app.constants';
-import { createRequestOption } from 'app/shared';
+import { createRequestOption } from 'app/shared/util/request-util';
 import { IReservation } from 'app/shared/model/reservation.model';
 
 type EntityResponseType = HttpResponse<IReservation>;
@@ -45,20 +45,20 @@ export class ReservationService {
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
-  delete(id: number): Observable<HttpResponse<any>> {
-    return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
   protected convertDateFromClient(reservation: IReservation): IReservation {
     const copy: IReservation = Object.assign({}, reservation, {
-      startDate: reservation.startDate != null && reservation.startDate.isValid() ? reservation.startDate.format(DATE_FORMAT) : null
+      startDate: reservation.startDate && reservation.startDate.isValid() ? reservation.startDate.format(DATE_FORMAT) : undefined
     });
     return copy;
   }
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
-      res.body.startDate = res.body.startDate != null ? moment(res.body.startDate) : null;
+      res.body.startDate = res.body.startDate ? moment(res.body.startDate) : undefined;
     }
     return res;
   }
@@ -66,7 +66,7 @@ export class ReservationService {
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
       res.body.forEach((reservation: IReservation) => {
-        reservation.startDate = reservation.startDate != null ? moment(reservation.startDate) : null;
+        reservation.startDate = reservation.startDate ? moment(reservation.startDate) : undefined;
       });
     }
     return res;
