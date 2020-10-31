@@ -11,6 +11,6 @@ import { guestRoute } from './guest.route';
 @NgModule({
   imports: [MainAppSharedModule, RouterModule.forChild(guestRoute)],
   declarations: [GuestComponent, GuestDetailComponent, GuestUpdateComponent, GuestDeleteDialogComponent],
-  entryComponents: [GuestDeleteDialogComponent]
+  entryComponents: [GuestDeleteDialogComponent],
 })
 export class MainAppGuestModule {}

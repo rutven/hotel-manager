@@ -40,44 +40,44 @@ export const roomRoute: Routes = [
     component: RoomComponent,
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.room.home.title'
+      pageTitle: 'mainApp.room.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: RoomDetailComponent,
     resolve: {
-      room: RoomResolve
+      room: RoomResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.room.home.title'
+      pageTitle: 'mainApp.room.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: RoomUpdateComponent,
     resolve: {
-      room: RoomResolve
+      room: RoomResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.room.home.title'
+      pageTitle: 'mainApp.room.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: RoomUpdateComponent,
     resolve: {
-      room: RoomResolve
+      room: RoomResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.room.home.title'
+      pageTitle: 'mainApp.room.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

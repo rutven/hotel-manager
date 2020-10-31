@@ -40,44 +40,44 @@ export const reservationRoute: Routes = [
     component: ReservationComponent,
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.reservation.home.title'
+      pageTitle: 'mainApp.reservation.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: ReservationDetailComponent,
     resolve: {
-      reservation: ReservationResolve
+      reservation: ReservationResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.reservation.home.title'
+      pageTitle: 'mainApp.reservation.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: ReservationUpdateComponent,
     resolve: {
-      reservation: ReservationResolve
+      reservation: ReservationResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.reservation.home.title'
+      pageTitle: 'mainApp.reservation.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: ReservationUpdateComponent,
     resolve: {
-      reservation: ReservationResolve
+      reservation: ReservationResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.reservation.home.title'
+      pageTitle: 'mainApp.reservation.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

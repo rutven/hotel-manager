@@ -28,7 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link ReservationResource} REST controller.
  */
 @SpringBootTest(classes = MainApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class ReservationResourceIT {
@@ -87,7 +86,6 @@ public class ReservationResourceIT {
     @Transactional
     public void createReservation() throws Exception {
         int databaseSizeBeforeCreate = reservationRepository.findAll().size();
-
         // Create the Reservation
         restReservationMockMvc.perform(post("/api/reservations")
             .contentType(MediaType.APPLICATION_JSON)
@@ -151,7 +149,6 @@ public class ReservationResourceIT {
             .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
             .andExpect(jsonPath("$.days").value(DEFAULT_DAYS));
     }
-
     @Test
     @Transactional
     public void getNonExistingReservation() throws Exception {
@@ -193,8 +190,6 @@ public class ReservationResourceIT {
     @Transactional
     public void updateNonExistingReservation() throws Exception {
         int databaseSizeBeforeUpdate = reservationRepository.findAll().size();
-
-        // Create the Reservation
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restReservationMockMvc.perform(put("/api/reservations")

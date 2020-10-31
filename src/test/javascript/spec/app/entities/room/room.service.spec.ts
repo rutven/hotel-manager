@@ -14,7 +14,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule]
+        imports: [HttpClientTestingModule],
       });
       expectedResult = null;
       injector = getTestBed();
@@ -38,7 +38,7 @@ describe('Service Tests', () => {
       it('should create a Room', () => {
         const returnedFromService = Object.assign(
           {
-            id: 0
+            id: 0,
           },
           elemDefault
         );
@@ -57,7 +57,7 @@ describe('Service Tests', () => {
           {
             roomNumber: 1,
             roomType: 'BBBBBB',
-            floor: 1
+            floor: 1,
           },
           elemDefault
         );
@@ -76,7 +76,7 @@ describe('Service Tests', () => {
           {
             roomNumber: 1,
             roomType: 'BBBBBB',
-            floor: 1
+            floor: 1,
           },
           elemDefault
         );

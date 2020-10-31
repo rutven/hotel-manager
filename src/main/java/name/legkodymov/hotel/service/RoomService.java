@@ -27,9 +27,10 @@ public interface RoomService {
     /**
      * Get all the RoomDTO where Reservation is {@code null}.
      *
-     * @return the list of entities.
+     * @return the {@link List} of entities.
      */
     List<Room> findAllWhereReservationIsNull();
+
 
     /**
      * Get the "id" room.

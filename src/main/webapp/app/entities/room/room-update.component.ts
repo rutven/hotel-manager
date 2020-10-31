@@ -10,7 +10,7 @@ import { RoomService } from './room.service';
 
 @Component({
   selector: 'jhi-room-update',
-  templateUrl: './room-update.component.html'
+  templateUrl: './room-update.component.html',
 })
 export class RoomUpdateComponent implements OnInit {
   isSaving = false;
@@ -19,7 +19,7 @@ export class RoomUpdateComponent implements OnInit {
     id: [],
     roomNumber: [null, [Validators.required, Validators.min(1)]],
     roomType: [],
-    floor: [null, [Validators.required, Validators.min(0)]]
+    floor: [null, [Validators.required, Validators.min(0)]],
   });
 
   constructor(protected roomService: RoomService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -35,7 +35,7 @@ export class RoomUpdateComponent implements OnInit {
       id: room.id,
       roomNumber: room.roomNumber,
       roomType: room.roomType,
-      floor: room.floor
+      floor: room.floor,
     });
   }
 
@@ -59,7 +59,7 @@ export class RoomUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       roomNumber: this.editForm.get(['roomNumber'])!.value,
       roomType: this.editForm.get(['roomType'])!.value,
-      floor: this.editForm.get(['floor'])!.value
+      floor: this.editForm.get(['floor'])!.value,
     };
   }
 

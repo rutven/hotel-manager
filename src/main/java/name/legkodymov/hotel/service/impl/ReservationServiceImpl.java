@@ -28,24 +28,12 @@ public class ReservationServiceImpl implements ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    /**
-     * Save a reservation.
-     *
-     * @param reservation the entity to save.
-     * @return the persisted entity.
-     */
     @Override
     public Reservation save(Reservation reservation) {
         log.debug("Request to save Reservation : {}", reservation);
         return reservationRepository.save(reservation);
     }
 
-    /**
-     * Get all the reservations.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
     @Override
     @Transactional(readOnly = true)
     public Page<Reservation> findAll(Pageable pageable) {
@@ -53,12 +41,7 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.findAll(pageable);
     }
 
-    /**
-     * Get one reservation by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
+
     @Override
     @Transactional(readOnly = true)
     public Optional<Reservation> findOne(Long id) {
@@ -66,11 +49,6 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.findById(id);
     }
 
-    /**
-     * Delete the reservation by id.
-     *
-     * @param id the id of the entity.
-     */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Reservation : {}", id);

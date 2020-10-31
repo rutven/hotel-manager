@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.time.LocalDate;
 
 /**
@@ -16,7 +15,7 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "reservation")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Reservation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,10 +36,10 @@ public class Reservation implements Serializable {
     private Room room;
 
     @ManyToOne
-    @JsonIgnoreProperties("reservations")
+    @JsonIgnoreProperties(value = "reservations", allowSetters = true)
     private Guest guest;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -100,7 +99,7 @@ public class Reservation implements Serializable {
     public void setGuest(Guest guest) {
         this.guest = guest;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -118,6 +117,7 @@ public class Reservation implements Serializable {
         return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Reservation{" +

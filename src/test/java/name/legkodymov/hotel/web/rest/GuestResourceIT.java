@@ -26,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link GuestResource} REST controller.
  */
 @SpringBootTest(classes = MainApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class GuestResourceIT {
@@ -90,7 +89,6 @@ public class GuestResourceIT {
     @Transactional
     public void createGuest() throws Exception {
         int databaseSizeBeforeCreate = guestRepository.findAll().size();
-
         // Create the Guest
         restGuestMockMvc.perform(post("/api/guests")
             .contentType(MediaType.APPLICATION_JSON)
@@ -157,7 +155,6 @@ public class GuestResourceIT {
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL));
     }
-
     @Test
     @Transactional
     public void getNonExistingGuest() throws Exception {
@@ -201,8 +198,6 @@ public class GuestResourceIT {
     @Transactional
     public void updateNonExistingGuest() throws Exception {
         int databaseSizeBeforeUpdate = guestRepository.findAll().size();
-
-        // Create the Guest
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restGuestMockMvc.perform(put("/api/guests")

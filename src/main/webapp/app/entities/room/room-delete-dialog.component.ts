@@ -6,7 +6,7 @@ import { IRoom } from 'app/shared/model/room.model';
 import { RoomService } from './room.service';
 
 @Component({
-  templateUrl: './room-delete-dialog.component.html'
+  templateUrl: './room-delete-dialog.component.html',
 })
 export class RoomDeleteDialogComponent {
   room?: IRoom;

@@ -40,44 +40,44 @@ export const guestRoute: Routes = [
     component: GuestComponent,
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.guest.home.title'
+      pageTitle: 'mainApp.guest.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: GuestDetailComponent,
     resolve: {
-      guest: GuestResolve
+      guest: GuestResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.guest.home.title'
+      pageTitle: 'mainApp.guest.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: GuestUpdateComponent,
     resolve: {
-      guest: GuestResolve
+      guest: GuestResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.guest.home.title'
+      pageTitle: 'mainApp.guest.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: GuestUpdateComponent,
     resolve: {
-      guest: GuestResolve
+      guest: GuestResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'mainApp.guest.home.title'
+      pageTitle: 'mainApp.guest.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

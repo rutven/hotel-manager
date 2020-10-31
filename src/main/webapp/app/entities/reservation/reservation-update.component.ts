@@ -17,7 +17,7 @@ type SelectableEntity = IRoom | IGuest;
 
 @Component({
   selector: 'jhi-reservation-update',
-  templateUrl: './reservation-update.component.html'
+  templateUrl: './reservation-update.component.html',
 })
 export class ReservationUpdateComponent implements OnInit {
   isSaving = false;
@@ -30,7 +30,7 @@ export class ReservationUpdateComponent implements OnInit {
     startDate: [],
     days: [null, [Validators.min(1)]],
     room: [],
-    guest: []
+    guest: [],
   });
 
   constructor(
@@ -77,7 +77,7 @@ export class ReservationUpdateComponent implements OnInit {
       startDate: reservation.startDate,
       days: reservation.days,
       room: reservation.room,
-      guest: reservation.guest
+      guest: reservation.guest,
     });
   }
 
@@ -102,7 +102,7 @@ export class ReservationUpdateComponent implements OnInit {
       startDate: this.editForm.get(['startDate'])!.value,
       days: this.editForm.get(['days'])!.value,
       room: this.editForm.get(['room'])!.value,
-      guest: this.editForm.get(['guest'])!.value
+      guest: this.editForm.get(['guest'])!.value,
     };
   }
 

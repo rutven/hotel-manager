@@ -51,7 +51,7 @@ export class ReservationService {
 
   protected convertDateFromClient(reservation: IReservation): IReservation {
     const copy: IReservation = Object.assign({}, reservation, {
-      startDate: reservation.startDate && reservation.startDate.isValid() ? reservation.startDate.format(DATE_FORMAT) : undefined
+      startDate: reservation.startDate && reservation.startDate.isValid() ? reservation.startDate.format(DATE_FORMAT) : undefined,
     });
     return copy;
   }

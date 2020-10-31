@@ -18,7 +18,7 @@
         <span jhiTranslate="mainApp.reservation.home.notFound">No reservations found</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="reservations?.length > 0">
+    <div class="table-responsive" id="entities" *ngIf="reservations && reservations.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">

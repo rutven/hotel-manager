@@ -27,23 +27,12 @@ public class GuestServiceImpl implements GuestService {
         this.guestRepository = guestRepository;
     }
 
-    /**
-     * Save a guest.
-     *
-     * @param guest the entity to save.
-     * @return the persisted entity.
-     */
     @Override
     public Guest save(Guest guest) {
         log.debug("Request to save Guest : {}", guest);
         return guestRepository.save(guest);
     }
 
-    /**
-     * Get all the guests.
-     *
-     * @return the list of entities.
-     */
     @Override
     @Transactional(readOnly = true)
     public List<Guest> findAll() {
@@ -51,12 +40,7 @@ public class GuestServiceImpl implements GuestService {
         return guestRepository.findAll();
     }
 
-    /**
-     * Get one guest by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
+
     @Override
     @Transactional(readOnly = true)
     public Optional<Guest> findOne(Long id) {
@@ -64,11 +48,6 @@ public class GuestServiceImpl implements GuestService {
         return guestRepository.findById(id);
     }
 
-    /**
-     * Delete the guest by id.
-     *
-     * @param id the id of the entity.
-     */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Guest : {}", id);

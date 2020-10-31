@@ -11,6 +11,6 @@ import { reservationRoute } from './reservation.route';
 @NgModule({
   imports: [MainAppSharedModule, RouterModule.forChild(reservationRoute)],
   declarations: [ReservationComponent, ReservationDetailComponent, ReservationUpdateComponent, ReservationDeleteDialogComponent],
-  entryComponents: [ReservationDeleteDialogComponent]
+  entryComponents: [ReservationDeleteDialogComponent],
 })
 export class MainAppReservationModule {}

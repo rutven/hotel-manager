@@ -6,7 +6,7 @@ import { IGuest } from 'app/shared/model/guest.model';
 import { GuestService } from './guest.service';
 
 @Component({
-  templateUrl: './guest-delete-dialog.component.html'
+  templateUrl: './guest-delete-dialog.component.html',
 })
 export class GuestDeleteDialogComponent {
   guest?: IGuest;

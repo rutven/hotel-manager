@@ -16,7 +16,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [MainAppTestModule],
-        declarations: [RoomComponent]
+        declarations: [RoomComponent],
       })
         .overrideTemplate(RoomComponent, '')
         .compileComponents();
@@ -33,7 +33,7 @@ describe('Component Tests', () => {
         of(
           new HttpResponse({
             body: [new Room(123)],
-            headers
+            headers,
           })
         )
       );
