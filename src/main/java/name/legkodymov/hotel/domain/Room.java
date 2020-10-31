@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import name.legkodymov.hotel.domain.enumeration.RoomType;
 
@@ -17,7 +16,7 @@ import name.legkodymov.hotel.domain.enumeration.RoomType;
  */
 @Entity
 @Table(name = "room")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,7 +43,7 @@ public class Room implements Serializable {
     @JsonIgnore
     private Reservation reservation;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -104,7 +103,7 @@ public class Room implements Serializable {
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -122,6 +121,7 @@ public class Room implements Serializable {
         return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Room{" +

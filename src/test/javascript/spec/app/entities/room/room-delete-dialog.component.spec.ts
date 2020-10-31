@@ -20,7 +20,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [MainAppTestModule],
-        declarations: [RoomDeleteDialogComponent]
+        declarations: [RoomDeleteDialogComponent],
       })
         .overrideTemplate(RoomDeleteDialogComponent, '')
         .compileComponents();

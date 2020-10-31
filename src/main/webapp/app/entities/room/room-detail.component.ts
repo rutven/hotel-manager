@@ -5,7 +5,7 @@ import { IRoom } from 'app/shared/model/room.model';
 
 @Component({
   selector: 'jhi-room-detail',
-  templateUrl: './room-detail.component.html'
+  templateUrl: './room-detail.component.html',
 })
 export class RoomDetailComponent implements OnInit {
   room: IRoom | null = null;

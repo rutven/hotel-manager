@@ -1,48 +1,40 @@
 {
-    "name": "Room",
-    "fields": [
-        {
-            "fieldName": "roomNumber",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required",
-                "min"
-            ],
-            "fieldValidateRulesMin": 1
-        },
-        {
-            "fieldName": "roomType",
-            "fieldType": "RoomType",
-            "fieldValues": "STANDARD,COMFORT,LUXE"
-        },
-        {
-            "fieldName": "floor",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required",
-                "min"
-            ],
-            "fieldValidateRulesMin": 0
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-one",
-            "otherEntityName": "reservation",
-            "otherEntityRelationshipName": "room",
-            "relationshipName": "reservation",
-            "ownerSide": false
-        }
-    ],
-    "changelogDate": "20190702192515",
-    "entityTableName": "room",
-    "dto": "no",
-    "pagination": "no",
-    "service": "serviceImpl",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": [
-        "mainApp"
-    ]
+  "name": "Room",
+  "fields": [
+    {
+      "fieldName": "roomNumber",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": 1
+    },
+    {
+      "fieldName": "roomType",
+      "fieldType": "RoomType",
+      "fieldValues": "STANDARD,COMFORT,LUXE"
+    },
+    {
+      "fieldName": "floor",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": 0
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "reservation",
+      "otherEntityRelationshipName": "room",
+      "relationshipName": "reservation",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20190702192515",
+  "entityTableName": "room",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "applications": ["mainApp"]
 }

@@ -10,7 +10,7 @@ import { GuestDeleteDialogComponent } from './guest-delete-dialog.component';
 
 @Component({
   selector: 'jhi-guest',
-  templateUrl: './guest.component.html'
+  templateUrl: './guest.component.html',
 })
 export class GuestComponent implements OnInit, OnDestroy {
   guests?: IGuest[];

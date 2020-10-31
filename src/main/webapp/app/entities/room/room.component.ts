@@ -10,7 +10,7 @@ import { RoomDeleteDialogComponent } from './room-delete-dialog.component';
 
 @Component({
   selector: 'jhi-room',
-  templateUrl: './room.component.html'
+  templateUrl: './room.component.html',
 })
 export class RoomComponent implements OnInit, OnDestroy {
   rooms?: IRoom[];

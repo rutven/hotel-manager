@@ -6,7 +6,7 @@ import { IReservation } from 'app/shared/model/reservation.model';
 import { ReservationService } from './reservation.service';
 
 @Component({
-  templateUrl: './reservation-delete-dialog.component.html'
+  templateUrl: './reservation-delete-dialog.component.html',
 })
 export class ReservationDeleteDialogComponent {
   reservation?: IReservation;

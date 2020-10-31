@@ -27,7 +27,6 @@ import name.legkodymov.hotel.domain.enumeration.RoomType;
  * Integration tests for the {@link RoomResource} REST controller.
  */
 @SpringBootTest(classes = MainApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class RoomResourceIT {
@@ -91,7 +90,6 @@ public class RoomResourceIT {
     @Transactional
     public void createRoom() throws Exception {
         int databaseSizeBeforeCreate = roomRepository.findAll().size();
-
         // Create the Room
         restRoomMockMvc.perform(post("/api/rooms")
             .contentType(MediaType.APPLICATION_JSON)
@@ -136,6 +134,7 @@ public class RoomResourceIT {
 
         // Create the Room, which fails.
 
+
         restRoomMockMvc.perform(post("/api/rooms")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(room)))
@@ -153,6 +152,7 @@ public class RoomResourceIT {
         room.setFloor(null);
 
         // Create the Room, which fails.
+
 
         restRoomMockMvc.perform(post("/api/rooms")
             .contentType(MediaType.APPLICATION_JSON)
@@ -194,7 +194,6 @@ public class RoomResourceIT {
             .andExpect(jsonPath("$.roomType").value(DEFAULT_ROOM_TYPE.toString()))
             .andExpect(jsonPath("$.floor").value(DEFAULT_FLOOR));
     }
-
     @Test
     @Transactional
     public void getNonExistingRoom() throws Exception {
@@ -238,8 +237,6 @@ public class RoomResourceIT {
     @Transactional
     public void updateNonExistingRoom() throws Exception {
         int databaseSizeBeforeUpdate = roomRepository.findAll().size();
-
-        // Create the Room
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restRoomMockMvc.perform(put("/api/rooms")

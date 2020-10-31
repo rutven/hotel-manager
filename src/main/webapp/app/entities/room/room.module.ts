@@ -11,6 +11,6 @@ import { roomRoute } from './room.route';
 @NgModule({
   imports: [MainAppSharedModule, RouterModule.forChild(roomRoute)],
   declarations: [RoomComponent, RoomDetailComponent, RoomUpdateComponent, RoomDeleteDialogComponent],
-  entryComponents: [RoomDeleteDialogComponent]
+  entryComponents: [RoomDeleteDialogComponent],
 })
 export class MainAppRoomModule {}

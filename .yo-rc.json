@@ -24,7 +24,7 @@
     "baseName": "mainApp",
     "buildTool": "gradle",
     "clientFramework": "angularX",
-    "jhipsterVersion": "6.8.0",
+    "jhipsterVersion": "6.10.4",
     "authenticationType": "jwt",
     "cacheProvider": "ehcache",
     "jwtSecretKey": "ZDgwNzBiMGRlYjAxMTQwN2ViMjc3ZmM3Y2UxYzdjNjJiZmU0MjVjYTRmNTRiODk1M2M2ZmUxZjI1ZDBiNTJlYzg0NzY2NWExOGQ4NDIxMGRmNjBkYmJhZWY0ZjNjMTY2NDI0Ng==",

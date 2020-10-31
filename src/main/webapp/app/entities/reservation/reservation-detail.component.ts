@@ -5,7 +5,7 @@ import { IReservation } from 'app/shared/model/reservation.model';
 
 @Component({
   selector: 'jhi-reservation-detail',
-  templateUrl: './reservation-detail.component.html'
+  templateUrl: './reservation-detail.component.html',
 })
 export class ReservationDetailComponent implements OnInit {
   reservation: IReservation | null = null;

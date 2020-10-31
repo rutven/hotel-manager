@@ -18,7 +18,7 @@
         <span jhiTranslate="mainApp.guest.home.notFound">No guests found</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="guests?.length > 0">
+    <div class="table-responsive" id="entities" *ngIf="guests && guests.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>

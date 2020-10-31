@@ -5,7 +5,7 @@ import { IGuest } from 'app/shared/model/guest.model';
 
 @Component({
   selector: 'jhi-guest-detail',
-  templateUrl: './guest-detail.component.html'
+  templateUrl: './guest-detail.component.html',
 })
 export class GuestDetailComponent implements OnInit {
   guest: IGuest | null = null;

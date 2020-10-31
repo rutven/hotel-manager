@@ -16,7 +16,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule]
+        imports: [HttpClientTestingModule],
       });
       expectedResult = null;
       injector = getTestBed();
@@ -31,7 +31,7 @@ describe('Service Tests', () => {
       it('should find an element', () => {
         const returnedFromService = Object.assign(
           {
-            startDate: currentDate.format(DATE_FORMAT)
+            startDate: currentDate.format(DATE_FORMAT),
           },
           elemDefault
         );
@@ -47,14 +47,14 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            startDate: currentDate.format(DATE_FORMAT)
+            startDate: currentDate.format(DATE_FORMAT),
           },
           elemDefault
         );
 
         const expected = Object.assign(
           {
-            startDate: currentDate
+            startDate: currentDate,
           },
           returnedFromService
         );
@@ -70,14 +70,14 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             startDate: currentDate.format(DATE_FORMAT),
-            days: 1
+            days: 1,
           },
           elemDefault
         );
 
         const expected = Object.assign(
           {
-            startDate: currentDate
+            startDate: currentDate,
           },
           returnedFromService
         );
@@ -93,14 +93,14 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             startDate: currentDate.format(DATE_FORMAT),
-            days: 1
+            days: 1,
           },
           elemDefault
         );
 
         const expected = Object.assign(
           {
-            startDate: currentDate
+            startDate: currentDate,
           },
           returnedFromService
         );

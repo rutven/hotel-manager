@@ -10,7 +10,7 @@ import { GuestService } from './guest.service';
 
 @Component({
   selector: 'jhi-guest-update',
-  templateUrl: './guest-update.component.html'
+  templateUrl: './guest-update.component.html',
 })
 export class GuestUpdateComponent implements OnInit {
   isSaving = false;
@@ -19,7 +19,7 @@ export class GuestUpdateComponent implements OnInit {
     id: [],
     name: [],
     phone: [],
-    email: []
+    email: [],
   });
 
   constructor(protected guestService: GuestService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -35,7 +35,7 @@ export class GuestUpdateComponent implements OnInit {
       id: guest.id,
       name: guest.name,
       phone: guest.phone,
-      email: guest.email
+      email: guest.email,
     });
   }
 
@@ -59,7 +59,7 @@ export class GuestUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
       phone: this.editForm.get(['phone'])!.value,
-      email: this.editForm.get(['email'])!.value
+      email: this.editForm.get(['email'])!.value,
     };
   }
 

@@ -12,7 +12,7 @@ import { ReservationDeleteDialogComponent } from './reservation-delete-dialog.co
 
 @Component({
   selector: 'jhi-reservation',
-  templateUrl: './reservation.component.html'
+  templateUrl: './reservation.component.html',
 })
 export class ReservationComponent implements OnInit, OnDestroy {
   reservations: IReservation[];
@@ -33,7 +33,7 @@ export class ReservationComponent implements OnInit, OnDestroy {
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 0;
     this.links = {
-      last: 0
+      last: 0,
     };
     this.predicate = 'id';
     this.ascending = true;
@@ -44,7 +44,7 @@ export class ReservationComponent implements OnInit, OnDestroy {
       .query({
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
       })
       .subscribe((res: HttpResponse<IReservation[]>) => this.paginateReservations(res.body, res.headers));
   }
